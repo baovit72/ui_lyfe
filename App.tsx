@@ -11,15 +11,17 @@ import {
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
 
-const HeartIcon = (
-  props?: Partial<ImageProps>,
-): React.ReactElement<ImageProps> => <Icon {...props} name="heart" />;
+import Entry from './src/index';
+
+// const HeartIcon = (
+//   props?: Partial<ImageProps>,
+// ): React.ReactElement<ImageProps> => <Icon {...props} name="heart" />;
 
 export default (): React.ReactFragment => (
   <>
     <IconRegistry icons={EvaIconsPack} />
     <ApplicationProvider {...eva} theme={eva.light}>
-      <Layout style={styles.container}>
+      {/* <Layout style={styles.container}>
         <Text style={styles.text} category="h1">
           Welcome to UI Kitten 😻
         </Text>
@@ -32,7 +34,8 @@ export default (): React.ReactFragment => (
         <Button style={styles.likeButton} accessoryLeft={HeartIcon}>
           LIKE
         </Button>
-      </Layout>
+      </Layout> */}
+      <Entry />
     </ApplicationProvider>
   </>
 );
