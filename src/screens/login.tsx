@@ -26,10 +26,37 @@ const styles = StyleSheet.create({
   },
   inputField: {
     marginBottom: 10,
+    width: '90%',
+    borderRadius: 15,
   },
   loginButton: {
-    width: '100%',
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    shadowOffset: {
+      height: 1,
+      width: 1,
+    },
+    shadowColor: '#FFEAD5',
+    width: '90%',
+    borderRadius: 15,
+    marginBottom: 20,
   },
+  flexRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  forgotButton: {
+    width: '90%',
+    borderRadius: 15,
+  },
+  logoTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 50,
+  },
+  signupButton: {},
+  grayText: {},
 });
 
 export default () => {
@@ -40,6 +67,9 @@ export default () => {
       source={require('../../assets/authback.png')}
       //   imageStyle={styles.backgroundImage}
       style={styles.background}>
+      <Text style={styles.logoTitle} status="primary">
+        Lyfe
+      </Text>
       <Input
         style={styles.inputField}
         placeholder="Username"
@@ -55,6 +85,15 @@ export default () => {
         onChangeText={text => setPassword(text)}
       />
       <Button style={styles.loginButton}>Login</Button>
+      <Button style={styles.loginButton} appearance="ghost">
+        Forgot password?
+      </Button>
+      <View style={styles.flexRow}>
+        <Text>Don't have an account?</Text>
+        <Button style={styles.signupButton} appearance="ghost">
+          Sign Up
+        </Button>
+      </View>
     </ImageBackground>
   );
 };
