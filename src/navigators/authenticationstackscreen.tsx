@@ -7,6 +7,9 @@ const AuthenticationStack = createStackNavigator();
 export default () => (
   <AuthenticationStack.Navigator>
     <AuthenticationStack.Screen
+      options={{
+        headerShown: false,
+      }}
       name="Login"
       component={LoginScreen}></AuthenticationStack.Screen>
   </AuthenticationStack.Navigator>

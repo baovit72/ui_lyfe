@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   ApplicationProvider,
   Button,
@@ -7,14 +7,54 @@ import {
   Text,
   Input,
 } from '@ui-kitten/components';
-import {View} from 'react-native';
+import {Image, ImageBackground, StyleSheet, View} from 'react-native';
+
+/**
+ * Stylesheet for the component
+ */
+const styles = StyleSheet.create({
+  background: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    resizeMode: 'cover',
+    flex: 1,
+  },
+  backgroundImage: {
+    resizeMode: 'cover',
+    flex: 1,
+  },
+  inputField: {
+    marginBottom: 10,
+  },
+  loginButton: {
+    width: '100%',
+  },
+});
+
 export default () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   return (
-    <Layout>
-      {/* <Input placeholder="Username"></Input>;
-      <Input placeholder="Password"></Input>; */}
-      <View></View>
-      <Text>Xin chao</Text>
-    </Layout>
+    <ImageBackground
+      source={require('../../assets/authback.png')}
+      //   imageStyle={styles.backgroundImage}
+      style={styles.background}>
+      <Input
+        style={styles.inputField}
+        placeholder="Username"
+        size="large"
+        value={username}
+        onChangeText={text => setUsername(text)}
+      />
+      <Input
+        style={styles.inputField}
+        placeholder="Password"
+        size="large"
+        value={password}
+        onChangeText={text => setPassword(text)}
+      />
+      <Button style={styles.loginButton}>Login</Button>
+    </ImageBackground>
   );
 };

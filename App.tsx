@@ -10,9 +10,9 @@ import {
 } from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
-
 import Entry from './src/index';
 
+const theme = require('./assets/theme.json');
 // const HeartIcon = (
 //   props?: Partial<ImageProps>,
 // ): React.ReactElement<ImageProps> => <Icon {...props} name="heart" />;
@@ -20,7 +20,7 @@ import Entry from './src/index';
 export default (): React.ReactFragment => (
   <>
     <IconRegistry icons={EvaIconsPack} />
-    <ApplicationProvider {...eva} theme={eva.light}>
+    <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
       {/* <Layout style={styles.container}>
         <Text style={styles.text} category="h1">
           Welcome to UI Kitten 😻
