@@ -64,7 +64,11 @@ const styles = StyleSheet.create({
   grayText: {},
 });
 
-export default () => {
+interface IProp {
+  navigation: any;
+}
+
+export default ({navigation}: IProp) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -89,13 +93,24 @@ export default () => {
         value={password}
         onChangeText={text => setPassword(text)}
       />
-      <Button style={styles.loginButton}>Login</Button>
+      <Button
+        style={styles.loginButton}
+        onPress={() => {
+          console.log('Login pressed');
+        }}>
+        Login
+      </Button>
       <Button style={styles.loginButton} appearance="ghost">
         Forgot password?
       </Button>
       <View style={styles.flexRow}>
         <Text style={styles.noAccountDesc}>Don't have an account?</Text>
-        <Button style={styles.signupButton} appearance="ghost">
+        <Button
+          onPress={() => {
+            navigation.push('Signup');
+          }}
+          style={styles.signupButton}
+          appearance="ghost">
           Sign Up
         </Button>
       </View>
