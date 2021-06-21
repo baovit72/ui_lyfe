@@ -45,15 +45,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 70,
   },
   forgotButton: {
     width: '90%',
     borderRadius: 15,
   },
   logoTitle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 50,
+    fontSize: 85,
+    // fontWeight: 'bold',
+    marginBottom: 95,
+    fontFamily: 'LemonJellyPersonalUse',
+  },
+  noAccountDesc: {
+    color: 'gray',
   },
   signupButton: {},
   grayText: {},
@@ -89,7 +94,7 @@ export default () => {
         Forgot password?
       </Button>
       <View style={styles.flexRow}>
-        <Text>Don't have an account?</Text>
+        <Text style={styles.noAccountDesc}>Don't have an account?</Text>
         <Button style={styles.signupButton} appearance="ghost">
           Sign Up
         </Button>

@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,18 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BillionDreams-vmgK9.ttf</string>
+		<string>BubbleBobble-rg3rx.ttf</string>
+		<string>GvTimeRegular-BW768.ttf</string>
+		<string>LemonJellyPersonalUse-dEqR.ttf</string>
+		<string>Maghrib-MVZpx.ttf</string>
+		<string>BillionDreams.ttf</string>
+		<string>BubbleBobble.ttf</string>
+		<string>GvTimeRegular.ttf</string>
+		<string>LemonJellyPersonalUse.ttf</string>
+		<string>Maghrib.ttf</string>
+	</array>
 </dict>
 </plist>
