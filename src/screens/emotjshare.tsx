@@ -76,57 +76,13 @@ interface IProp {
 }
 
 export default ({navigation}: IProp) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   return (
-    <ImageBackground
-      source={require('../../assets/authback.png')}
-      //   imageStyle={styles.backgroundImage}
-      style={styles.background}>
-      <Text style={styles.logoTitle} status="primary">
-        Lyfe
-      </Text>
-
-      <Input
-        style={styles.inputField}
-        placeholder="Username"
-        size="large"
-        value={username}
-        onChangeText={text => setUsername(text)}
-      />
-      <Input
-        style={styles.inputField}
-        placeholder="Password"
-        size="large"
-        value={password}
-        onChangeText={text => setPassword(text)}
-      />
-      <Button
-        style={styles.loginButton}
-        onPress={() => {
-          console.log('Login pressed');
-        }}>
-        Login
-      </Button>
-      <Button
-        onPress={() => {
-          navigation.push('Forgot');
-        }}
-        style={styles.loginButton}
-        appearance="ghost">
-        Forgot password?
-      </Button>
-      <View style={styles.flexRow}>
-        <Text style={styles.noAccountDesc}>Don't have an account?</Text>
-        <Button
-          onPress={() => {
-            navigation.push('Signup');
-          }}
-          style={styles.signupButton}
-          appearance="ghost">
-          Sign Up
-        </Button>
-      </View>
-    </ImageBackground>
+    <View
+      style={{
+        backgroundColor: 'white',
+        flex: 1,
+        width: '100%',
+        height: '100%',
+      }}></View>
   );
 };

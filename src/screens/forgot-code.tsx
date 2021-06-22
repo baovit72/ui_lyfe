@@ -40,12 +40,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 20,
   },
-  flexContent: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   flexRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -58,10 +52,8 @@ const styles = StyleSheet.create({
   },
   logoTitle: {
     fontSize: 85,
-    // fontWeight: 'bold',
     marginBottom: 55,
     marginTop: 55,
-    //COPYRIGHT
     fontFamily: 'LemonJellyPersonalUse',
   },
   noAccountDesc: {
@@ -76,8 +68,8 @@ interface IProp {
 }
 
 export default ({navigation}: IProp) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
   return (
     <ImageBackground
       source={require('../../assets/authback.png')}
@@ -86,47 +78,27 @@ export default ({navigation}: IProp) => {
       <Text style={styles.logoTitle} status="primary">
         Lyfe
       </Text>
-
       <Input
         style={styles.inputField}
-        placeholder="Username"
+        placeholder="Email"
         size="large"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
-      <Input
+      {/* <Input
         style={styles.inputField}
-        placeholder="Password"
+        placeholder="Code"
         size="large"
-        value={password}
-        onChangeText={text => setPassword(text)}
-      />
+        value={code}
+        onChangeText={text => setCode(text)}
+      /> */}
       <Button
         style={styles.loginButton}
         onPress={() => {
-          console.log('Login pressed');
+          navigation.push('forgotpass');
         }}>
-        Login
+        Send code
       </Button>
-      <Button
-        onPress={() => {
-          navigation.push('Forgot');
-        }}
-        style={styles.loginButton}
-        appearance="ghost">
-        Forgot password?
-      </Button>
-      <View style={styles.flexRow}>
-        <Text style={styles.noAccountDesc}>Don't have an account?</Text>
-        <Button
-          onPress={() => {
-            navigation.push('Signup');
-          }}
-          style={styles.signupButton}
-          appearance="ghost">
-          Sign Up
-        </Button>
-      </View>
     </ImageBackground>
   );
 };

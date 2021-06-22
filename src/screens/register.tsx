@@ -14,7 +14,6 @@ import {Image, ImageBackground, StyleSheet, View} from 'react-native';
  */
 const styles = StyleSheet.create({
   background: {
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     resizeMode: 'cover',
@@ -52,10 +51,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   logoTitle: {
-    marginTop: 80,
     fontSize: 85,
     // fontWeight: 'bold',
-    marginBottom: 95,
+    marginBottom: 55,
+    marginTop: 55,
+    //COPYRIGHT
     fontFamily: 'LemonJellyPersonalUse',
   },
   noAccountDesc: {
@@ -65,7 +65,10 @@ const styles = StyleSheet.create({
   grayText: {},
 });
 
-export default () => {
+interface IProp {
+  navigation: any;
+}
+export default ({navigation}: IProp) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -111,14 +114,16 @@ export default () => {
         onPress={() => {
           console.log('Login pressed');
         }}>
-        Login
-      </Button>
-      <Button style={styles.loginButton} appearance="ghost">
-        Forgot password?
+        Signup
       </Button>
       <View style={styles.flexRow}>
         <Text style={styles.noAccountDesc}>Already have an account?</Text>
-        <Button style={styles.signupButton} appearance="ghost">
+        <Button
+          style={styles.signupButton}
+          onPress={() => {
+            navigation.push('Login');
+          }}
+          appearance="ghost">
           Log In
         </Button>
       </View>
