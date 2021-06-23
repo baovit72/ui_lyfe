@@ -29,6 +29,10 @@ import Carousel from 'react-native-snap-carousel';
 const styles = StyleSheet.create({
   emotjCard: {
     borderRadius: 15,
+    backgroundColor: 'rgba(0,0,0,0.02)',
+    marginBottom: 20,
+    flexDirection: 'row',
+    flex: 1,
   },
   emotjText: {
     color: 'white',
@@ -65,6 +69,47 @@ export default ({navigation}: IProp) => {
     item: any;
     index: any;
   }
+  const _renderEmojiCard = ({item, index}) => {
+    return (
+      <Card
+        style={{
+          ...styles.emotjCard,
+          borderColor: theme['color-primary-400'],
+          flexDirection: 'row',
+          // backgroundColor: theme['color-primary-200'],
+        }}>
+        <View style={{flex: 1}}>
+          <Image
+            style={{
+              flex: 1,
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              marginBottom: 20,
+            }}
+            source={EMOJIS['BLUSHING_EMOJI_GIF']}
+          />
+          <Text>User Zero</Text>
+        </View>
+        <View
+          style={{
+            flex: 6,
+          }}>
+          <Text
+            style={{
+              flex: 6,
+              color: theme['color-primary-400'],
+              fontFamily: 'BubbleBobble',
+            }}>
+            The Maldives, officially the Republic of Maldives, is a small
+            country in South Asia, located in the Arabian Sea of the Indian
+            Ocean. It lies southwest of Sri Lanka and India, about 1,000
+            kilometres (620 mi) from the Asian continent
+          </Text>
+        </View>
+      </Card>
+    );
+  };
   const _renderItem = ({item, index}: IRProp) => {
     console.log(item);
     return (
@@ -99,6 +144,7 @@ export default ({navigation}: IProp) => {
           alignItems: 'center',
           paddingBottom: 30,
           borderBottomLeftRadius: 50,
+          overflow: 'hidden',
         }}>
         <Text
           style={{
@@ -148,20 +194,35 @@ export default ({navigation}: IProp) => {
             borderTopRightRadius: 50,
             backgroundColor: '#fff',
             flex: 1,
-            paddingLeft: 0,
-            paddingRight: 0,
+            paddingLeft: 20,
+            paddingRight: 20,
             flexDirection: 'column',
+            paddingTop: 30,
           }}>
           {/* <Image source={require('./../../assets/emojis/BIRTHDAY_CAKEx.gif')} /> */}
-
-          {/* <Card style={styles.emotjCard}>
-            <Text>
-              The Maldives, officially the Republic of Maldives, is a small
-              country in South Asia, located in the Arabian Sea of the Indian
-              Ocean. It lies southwest of Sri Lanka and India, about 1,000
-              kilometres (620 mi) from the Asian continent
-            </Text>
-          </Card> */}
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.contentContainer}
+            style={styles.container}
+            data={[
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+              'Data',
+            ]}
+            renderItem={_renderEmojiCard}
+          />
 
           {/* <Carousel
         data={[
