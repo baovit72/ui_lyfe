@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthenticationStackScreen from './navigators/authenticationstackscreen';
-import HomeTabScreen from './navigators/hometabscreen';
+import HomeStackScreen from './navigators/homestackscreen';
 
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -12,7 +12,7 @@ export default () => {
   // );
   return (
     <NavigationContainer>
-      <HomeTabScreen />
+      <HomeStackScreen />
     </NavigationContainer>
   );
 };

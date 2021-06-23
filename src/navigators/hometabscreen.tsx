@@ -11,6 +11,7 @@ import ForgotStackScreen from './forgotstackscreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import EmotjShare from '../screens/emotjshare';
+import {View} from 'react-native';
 
 const PersonIcon = (props: any) => <Icon {...props} name="person-outline" />;
 
@@ -25,6 +26,12 @@ interface IProp {
 }
 const BottomTabBar = ({navigation, state}: IProp) => (
   <BottomNavigation
+    style={{
+      paddingTop: 20,
+      paddingBottom: 20,
+      shadowColor: '#000',
+      shadowOpacity: 0.98,
+    }}
     appearance="noIndicator"
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
