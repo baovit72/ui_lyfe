@@ -11,6 +11,7 @@ import ForgotStackScreen from './forgotstackscreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import EmotjShare from '../screens/emotjshare';
+import ImageScreen from '../screens/images';
 import ChatRoom from '../screens/chatroom';
 import {View} from 'react-native';
 
@@ -49,11 +50,12 @@ export default () => (
   <HomeTabs.Navigator
     tabBarOptions={{
       keyboardHidesTabBar: true,
+      style: {position: 'absolute'},
     }}
     tabBar={props => <BottomTabBar {...props} />}>
     <HomeTabs.Screen name="Home" component={EmotjShare} />
     <HomeTabs.Screen name="Chat" component={ChatRoom} />
-    <HomeTabs.Screen name="Image" component={ChatRoom} />
+    <HomeTabs.Screen name="Image" component={ImageScreen} />
     <HomeTabs.Screen name="Profile" component={ChatRoom} />
   </HomeTabs.Navigator>
 );

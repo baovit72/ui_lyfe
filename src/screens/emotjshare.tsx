@@ -65,6 +65,7 @@ interface IProp {
 export default ({navigation}: IProp) => {
   const [thoughtModal, setThoughtModal] = useState(true);
   const theme = useTheme();
+  const t_backgroundColor = theme['background-basic-color-1'];
   interface IRProp {
     item: any;
     index: any;
@@ -121,7 +122,6 @@ export default ({navigation}: IProp) => {
                 flex: 1,
                 zIndex: 2,
                 // color: theme['color-primary-400'],
-                color: 'gray',
                 // fontFamily: 'BubbleBobble',
               }}>
               The Maldives, officially the Republic of Maldives, is a smallkijk
@@ -147,7 +147,7 @@ export default ({navigation}: IProp) => {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: t_backgroundColor,
       }}>
       {/* <Text
         style={{
@@ -183,7 +183,7 @@ export default ({navigation}: IProp) => {
           }}>
           <Text
             style={{
-              color: '#fff',
+              color: t_backgroundColor,
               fontSize: 25,
               fontFamily: 'BubbleBobble',
             }}>
@@ -220,7 +220,7 @@ export default ({navigation}: IProp) => {
         <View
           style={{
             borderTopRightRadius: 50,
-            backgroundColor: '#fff',
+            backgroundColor: t_backgroundColor,
             flex: 1,
             paddingLeft: 20,
             paddingRight: 20,
