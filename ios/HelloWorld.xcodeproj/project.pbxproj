@@ -23,6 +23,63 @@
 		27515C27B45643A08110817E /* GvTimeRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63F4C22417F84FA5A3D7AD3E /* GvTimeRegular.ttf */; };
 		65433CB54D7549BA93ABA685 /* LemonJellyPersonalUse.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7DDB8A55116483ABACCD7E0 /* LemonJellyPersonalUse.ttf */; };
 		FD7E7B13F003463C8047D617 /* Maghrib.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2718438E0CF2444A852AE4D0 /* Maghrib.ttf */; };
+		3762D54CDD5C4F2F9D920BAC /* AF1.png in Resources */ = {isa = PBXBuildFile; fileRef = D53DA3769389438B866EA503 /* AF1.png */; };
+		9EB02C3BAA9A4F30B3FDB768 /* AF2.png in Resources */ = {isa = PBXBuildFile; fileRef = BAA4C4EA2C644B8DB4FCF4CD /* AF2.png */; };
+		F9D271F0FB6246ED9EC8DBEE /* AF3.png in Resources */ = {isa = PBXBuildFile; fileRef = D0EA6EF48C1F470282B031D6 /* AF3.png */; };
+		32AB498A7E934F5387531F88 /* AM1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A7A1FC0FE940BCA4968515 /* AM1.png */; };
+		D7F7D409DBD9423C90E4AB1A /* AM2.png in Resources */ = {isa = PBXBuildFile; fileRef = F357AEB41B154046917F5D7E /* AM2.png */; };
+		914289F3B3C642EF943E6D65 /* AM3.png in Resources */ = {isa = PBXBuildFile; fileRef = 34323AD5B7C04A47A6CE5D9F /* AM3.png */; };
+		E06E71DE10B5436FA8EDDAEF /* ANGRY_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8EB1990F5279434A893EA51B /* ANGRY_EMOJI.gif */; };
+		0156BEF6A5034C81BD57C0A2 /* ANGRY_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = 10E8C0B15F0342C2A49F6969 /* ANGRY_EMOJI.png */; };
+		37755C4188434A4E975448AF /* BIRTHDAY_CAKE_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = 02CE03345AD241D99D833D95 /* BIRTHDAY_CAKE_O.gif */; };
+		C4EF3C103ABC4FA790ADD4CF /* BIRTHDAY_CAKE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 613D9984DEF44245AF6E3BB4 /* BIRTHDAY_CAKE.gif */; };
+		F48BD813C6084AF9966F1E1C /* BIRTHDAY_CAKE.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E4E3C496FD4506830CE37C /* BIRTHDAY_CAKE.png */; };
+		0C00225D03A44AA89067ED77 /* BLUSHING_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = A156304459D649BCADD80C89 /* BLUSHING_EMOJI.gif */; };
+		2BF5172728C34F34BE421919 /* BLUSHING_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = 50399AAA9893460A9D91BDD1 /* BLUSHING_EMOJI.png */; };
+		A89AD9BF48B040AC8D8A1D08 /* HEART_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92E2C425C1984BEE86A7212B /* HEART_O.gif */; };
+		1FAB1CC601D74EAD9E3B613A /* HEART.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7EBA2B498CAC462C8BAF4338 /* HEART.gif */; };
+		D8C7FDB541AF4E588915BDEA /* HEART.png in Resources */ = {isa = PBXBuildFile; fileRef = 245499123BB84E27948E066F /* HEART.png */; };
+		07B22D8292744C4983E34765 /* HEARTEYE_EMOJI_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = CC78E7E567FD41089F61A6A1 /* HEARTEYE_EMOJI_O.gif */; };
+		961B57D277824C408E43C3DF /* HEARTEYE_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = 270AEAF6EEB2454183908C14 /* HEARTEYE_EMOJI.gif */; };
+		0CE34D998EE04DA18F7F537B /* HEARTEYE_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D75760AF0B048E1941799C1 /* HEARTEYE_EMOJI.png */; };
+		C0C4424BB7434D93B8F9F086 /* LAUGHING_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = BB2896772A584849973B24AA /* LAUGHING_EMOJI.gif */; };
+		94CED21D6120409E808DDBD5 /* LAUGHING_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = A5694BC145B64BA787990F57 /* LAUGHING_EMOJI.png */; };
+		720886097CAE4B128087B947 /* MEDAL.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFEDAC35CE3140F6812DA3CC /* MEDAL.gif */; };
+		CA53F2CC5DA047ECA3153214 /* MEDAL.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DA8D07F03094F61982721CA /* MEDAL.png */; };
+		57772A4E91414834879B000C /* PEACE_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = 665A1E8557F54FC7BC7AE292 /* PEACE_O.gif */; };
+		23F415710F3B4D62A0CA1990 /* PEACE.gif in Resources */ = {isa = PBXBuildFile; fileRef = AD702402B82546ABBAE2761D /* PEACE.gif */; };
+		C2E331A87E1745BE95873093 /* PEACE.png in Resources */ = {isa = PBXBuildFile; fileRef = BCACEF6A3A0C462283C42DDD /* PEACE.png */; };
+		5E7A2045EB494014A016D9DC /* SAD_EMOJI_WITH_TEAR.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3A60ED13ABAD4681ACBDD248 /* SAD_EMOJI_WITH_TEAR.gif */; };
+		5E669EBCAB104AABBBEFF863 /* SAD_EMOJI_WITH_TEAR.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BADCFFF38F74374928524D9 /* SAD_EMOJI_WITH_TEAR.png */; };
+		95DBD687344F4C51AAD8BB35 /* SAD_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F78DA748D4E53AB57A8FD /* SAD_EMOJI.gif */; };
+		E0FBB2DA132B4D63802A0F64 /* SAD_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = 076CF8304A9444F5937D9128 /* SAD_EMOJI.png */; };
+		A1D1F67623AC461A98A283AF /* TEARS_OF_JOY_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = E45F24A318F144518A79CAFB /* TEARS_OF_JOY_O.gif */; };
+		79037836E02340DE8729E505 /* TEARS_OF_JOY.gif in Resources */ = {isa = PBXBuildFile; fileRef = E124830F67954623A222320B /* TEARS_OF_JOY.gif */; };
+		7BCCD485D98844ACBE725649 /* TEARS_OF_JOY.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF0DF972A9D4002BE67A316 /* TEARS_OF_JOY.png */; };
+		402F282AECE14D3DA45818A6 /* THINKING_FACE_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = D5CF48A2A0B24B9C8804E202 /* THINKING_FACE_O.gif */; };
+		D7177AECC2944F28BE8F82C2 /* THINKING_FACE.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6AB45F3F93C948C5AF0B4B53 /* THINKING_FACE.gif */; };
+		317E8AC95CAD4DB89397E31B /* THINKING_FACE.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5DC40714204D0C9E480B57 /* THINKING_FACE.png */; };
+		D019847584794F4A9FFFDB6D /* THUMBS_UP_O.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1590B8622F6F4837A9409A5D /* THUMBS_UP_O.gif */; };
+		143AD83665784290BF7B5D35 /* THUMBS_UP.gif in Resources */ = {isa = PBXBuildFile; fileRef = 010ADA65A19E4890B77D966E /* THUMBS_UP.gif */; };
+		B6A5C2E7346048BBB2A15A04 /* THUMBS_UP.png in Resources */ = {isa = PBXBuildFile; fileRef = 468E5A07716F496BADC0F713 /* THUMBS_UP.png */; };
+		727952DF70B94F8FB4732851 /* WOW_EMOJI.gif in Resources */ = {isa = PBXBuildFile; fileRef = E474BE93E3D14E2592B4797D /* WOW_EMOJI.gif */; };
+		800BFA85BD1D407E94AA7647 /* WOW_EMOJI.png in Resources */ = {isa = PBXBuildFile; fileRef = 7AB0949B8CB84CB2999ADB92 /* WOW_EMOJI.png */; };
+		FF40CB06D7B44B7FB1EA3705 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1011E1FA2CF742E29D043484 /* AntDesign.ttf */; };
+		F05FFF34921F41068ACF1A76 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97E66D6267404527BEC6CCAD /* Entypo.ttf */; };
+		62B126780F284E2394FAB438 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44421975FD08467094EB0171 /* EvilIcons.ttf */; };
+		1BEF23CA38E14DA89A6BAAEB /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32A2EAAC664F40CABF8EE242 /* Feather.ttf */; };
+		7E195749219A40F3B725DD9C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8DB5C8FEBBA41E2A336873B /* FontAwesome.ttf */; };
+		4A403D944F5644FBA1599F33 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1281A8EABB4143989F5967D5 /* FontAwesome5_Brands.ttf */; };
+		2E2308D2D30D4A71BAC01BED /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DFD8C9376D49A392029D5A /* FontAwesome5_Regular.ttf */; };
+		B8A9A81D0FA844A3BC0B8349 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B63F78D4113445BB8FAFE4E1 /* FontAwesome5_Solid.ttf */; };
+		20321948AAF84140817227B9 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5401F980FBDA443BB81E953E /* Fontisto.ttf */; };
+		77E5C5B0A87442118C3050F7 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C9AC1E44F94453A900F9DAD /* Foundation.ttf */; };
+		CF6BB102C044474098EB4AD4 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3F958196AE747A5A76F5D87 /* Ionicons.ttf */; };
+		6B79AF42EDC64BB389EA68AA /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A35909B7124A688371E077 /* MaterialCommunityIcons.ttf */; };
+		2FD44D31D7ED4671B3279B8F /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D697C5228914A929DA659EF /* MaterialIcons.ttf */; };
+		54DF58A193B348DC95E6D755 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F80DD3E1650743B98C979FCB /* Octicons.ttf */; };
+		0C2AA33BB8C74CAA8F09527D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFC270255B7849F391BA754B /* SimpleLineIcons.ttf */; };
+		919C34CE5BBB49619DD16A8D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F8B6B61FE8648CA8FB82804 /* Zocial.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +115,63 @@
 		63F4C22417F84FA5A3D7AD3E /* GvTimeRegular.ttf */ = {isa = PBXFileReference; name = "GvTimeRegular.ttf"; path = "../assets/GvTimeRegular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F7DDB8A55116483ABACCD7E0 /* LemonJellyPersonalUse.ttf */ = {isa = PBXFileReference; name = "LemonJellyPersonalUse.ttf"; path = "../assets/LemonJellyPersonalUse.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2718438E0CF2444A852AE4D0 /* Maghrib.ttf */ = {isa = PBXFileReference; name = "Maghrib.ttf"; path = "../assets/Maghrib.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D53DA3769389438B866EA503 /* AF1.png */ = {isa = PBXFileReference; name = "AF1.png"; path = "../assets/emojis/AF1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BAA4C4EA2C644B8DB4FCF4CD /* AF2.png */ = {isa = PBXFileReference; name = "AF2.png"; path = "../assets/emojis/AF2.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D0EA6EF48C1F470282B031D6 /* AF3.png */ = {isa = PBXFileReference; name = "AF3.png"; path = "../assets/emojis/AF3.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		35A7A1FC0FE940BCA4968515 /* AM1.png */ = {isa = PBXFileReference; name = "AM1.png"; path = "../assets/emojis/AM1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F357AEB41B154046917F5D7E /* AM2.png */ = {isa = PBXFileReference; name = "AM2.png"; path = "../assets/emojis/AM2.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		34323AD5B7C04A47A6CE5D9F /* AM3.png */ = {isa = PBXFileReference; name = "AM3.png"; path = "../assets/emojis/AM3.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8EB1990F5279434A893EA51B /* ANGRY_EMOJI.gif */ = {isa = PBXFileReference; name = "ANGRY_EMOJI.gif"; path = "../assets/emojis/ANGRY_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		10E8C0B15F0342C2A49F6969 /* ANGRY_EMOJI.png */ = {isa = PBXFileReference; name = "ANGRY_EMOJI.png"; path = "../assets/emojis/ANGRY_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		02CE03345AD241D99D833D95 /* BIRTHDAY_CAKE_O.gif */ = {isa = PBXFileReference; name = "BIRTHDAY_CAKE_O.gif"; path = "../assets/emojis/BIRTHDAY_CAKE_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		613D9984DEF44245AF6E3BB4 /* BIRTHDAY_CAKE.gif */ = {isa = PBXFileReference; name = "BIRTHDAY_CAKE.gif"; path = "../assets/emojis/BIRTHDAY_CAKE.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		94E4E3C496FD4506830CE37C /* BIRTHDAY_CAKE.png */ = {isa = PBXFileReference; name = "BIRTHDAY_CAKE.png"; path = "../assets/emojis/BIRTHDAY_CAKE.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A156304459D649BCADD80C89 /* BLUSHING_EMOJI.gif */ = {isa = PBXFileReference; name = "BLUSHING_EMOJI.gif"; path = "../assets/emojis/BLUSHING_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		50399AAA9893460A9D91BDD1 /* BLUSHING_EMOJI.png */ = {isa = PBXFileReference; name = "BLUSHING_EMOJI.png"; path = "../assets/emojis/BLUSHING_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		92E2C425C1984BEE86A7212B /* HEART_O.gif */ = {isa = PBXFileReference; name = "HEART_O.gif"; path = "../assets/emojis/HEART_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7EBA2B498CAC462C8BAF4338 /* HEART.gif */ = {isa = PBXFileReference; name = "HEART.gif"; path = "../assets/emojis/HEART.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		245499123BB84E27948E066F /* HEART.png */ = {isa = PBXFileReference; name = "HEART.png"; path = "../assets/emojis/HEART.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CC78E7E567FD41089F61A6A1 /* HEARTEYE_EMOJI_O.gif */ = {isa = PBXFileReference; name = "HEARTEYE_EMOJI_O.gif"; path = "../assets/emojis/HEARTEYE_EMOJI_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		270AEAF6EEB2454183908C14 /* HEARTEYE_EMOJI.gif */ = {isa = PBXFileReference; name = "HEARTEYE_EMOJI.gif"; path = "../assets/emojis/HEARTEYE_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5D75760AF0B048E1941799C1 /* HEARTEYE_EMOJI.png */ = {isa = PBXFileReference; name = "HEARTEYE_EMOJI.png"; path = "../assets/emojis/HEARTEYE_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB2896772A584849973B24AA /* LAUGHING_EMOJI.gif */ = {isa = PBXFileReference; name = "LAUGHING_EMOJI.gif"; path = "../assets/emojis/LAUGHING_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A5694BC145B64BA787990F57 /* LAUGHING_EMOJI.png */ = {isa = PBXFileReference; name = "LAUGHING_EMOJI.png"; path = "../assets/emojis/LAUGHING_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CFEDAC35CE3140F6812DA3CC /* MEDAL.gif */ = {isa = PBXFileReference; name = "MEDAL.gif"; path = "../assets/emojis/MEDAL.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1DA8D07F03094F61982721CA /* MEDAL.png */ = {isa = PBXFileReference; name = "MEDAL.png"; path = "../assets/emojis/MEDAL.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		665A1E8557F54FC7BC7AE292 /* PEACE_O.gif */ = {isa = PBXFileReference; name = "PEACE_O.gif"; path = "../assets/emojis/PEACE_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD702402B82546ABBAE2761D /* PEACE.gif */ = {isa = PBXFileReference; name = "PEACE.gif"; path = "../assets/emojis/PEACE.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BCACEF6A3A0C462283C42DDD /* PEACE.png */ = {isa = PBXFileReference; name = "PEACE.png"; path = "../assets/emojis/PEACE.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3A60ED13ABAD4681ACBDD248 /* SAD_EMOJI_WITH_TEAR.gif */ = {isa = PBXFileReference; name = "SAD_EMOJI_WITH_TEAR.gif"; path = "../assets/emojis/SAD_EMOJI_WITH_TEAR.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9BADCFFF38F74374928524D9 /* SAD_EMOJI_WITH_TEAR.png */ = {isa = PBXFileReference; name = "SAD_EMOJI_WITH_TEAR.png"; path = "../assets/emojis/SAD_EMOJI_WITH_TEAR.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4B2F78DA748D4E53AB57A8FD /* SAD_EMOJI.gif */ = {isa = PBXFileReference; name = "SAD_EMOJI.gif"; path = "../assets/emojis/SAD_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		076CF8304A9444F5937D9128 /* SAD_EMOJI.png */ = {isa = PBXFileReference; name = "SAD_EMOJI.png"; path = "../assets/emojis/SAD_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E45F24A318F144518A79CAFB /* TEARS_OF_JOY_O.gif */ = {isa = PBXFileReference; name = "TEARS_OF_JOY_O.gif"; path = "../assets/emojis/TEARS_OF_JOY_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E124830F67954623A222320B /* TEARS_OF_JOY.gif */ = {isa = PBXFileReference; name = "TEARS_OF_JOY.gif"; path = "../assets/emojis/TEARS_OF_JOY.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CBF0DF972A9D4002BE67A316 /* TEARS_OF_JOY.png */ = {isa = PBXFileReference; name = "TEARS_OF_JOY.png"; path = "../assets/emojis/TEARS_OF_JOY.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D5CF48A2A0B24B9C8804E202 /* THINKING_FACE_O.gif */ = {isa = PBXFileReference; name = "THINKING_FACE_O.gif"; path = "../assets/emojis/THINKING_FACE_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6AB45F3F93C948C5AF0B4B53 /* THINKING_FACE.gif */ = {isa = PBXFileReference; name = "THINKING_FACE.gif"; path = "../assets/emojis/THINKING_FACE.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FF5DC40714204D0C9E480B57 /* THINKING_FACE.png */ = {isa = PBXFileReference; name = "THINKING_FACE.png"; path = "../assets/emojis/THINKING_FACE.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1590B8622F6F4837A9409A5D /* THUMBS_UP_O.gif */ = {isa = PBXFileReference; name = "THUMBS_UP_O.gif"; path = "../assets/emojis/THUMBS_UP_O.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		010ADA65A19E4890B77D966E /* THUMBS_UP.gif */ = {isa = PBXFileReference; name = "THUMBS_UP.gif"; path = "../assets/emojis/THUMBS_UP.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		468E5A07716F496BADC0F713 /* THUMBS_UP.png */ = {isa = PBXFileReference; name = "THUMBS_UP.png"; path = "../assets/emojis/THUMBS_UP.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E474BE93E3D14E2592B4797D /* WOW_EMOJI.gif */ = {isa = PBXFileReference; name = "WOW_EMOJI.gif"; path = "../assets/emojis/WOW_EMOJI.gif"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7AB0949B8CB84CB2999ADB92 /* WOW_EMOJI.png */ = {isa = PBXFileReference; name = "WOW_EMOJI.png"; path = "../assets/emojis/WOW_EMOJI.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1011E1FA2CF742E29D043484 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		97E66D6267404527BEC6CCAD /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		44421975FD08467094EB0171 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		32A2EAAC664F40CABF8EE242 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E8DB5C8FEBBA41E2A336873B /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1281A8EABB4143989F5967D5 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		48DFD8C9376D49A392029D5A /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B63F78D4113445BB8FAFE4E1 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5401F980FBDA443BB81E953E /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9C9AC1E44F94453A900F9DAD /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E3F958196AE747A5A76F5D87 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F4A35909B7124A688371E077 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5D697C5228914A929DA659EF /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F80DD3E1650743B98C979FCB /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AFC270255B7849F391BA754B /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6F8B6B61FE8648CA8FB82804 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +275,63 @@
 				63F4C22417F84FA5A3D7AD3E /* GvTimeRegular.ttf */,
 				F7DDB8A55116483ABACCD7E0 /* LemonJellyPersonalUse.ttf */,
 				2718438E0CF2444A852AE4D0 /* Maghrib.ttf */,
+				D53DA3769389438B866EA503 /* AF1.png */,
+				BAA4C4EA2C644B8DB4FCF4CD /* AF2.png */,
+				D0EA6EF48C1F470282B031D6 /* AF3.png */,
+				35A7A1FC0FE940BCA4968515 /* AM1.png */,
+				F357AEB41B154046917F5D7E /* AM2.png */,
+				34323AD5B7C04A47A6CE5D9F /* AM3.png */,
+				8EB1990F5279434A893EA51B /* ANGRY_EMOJI.gif */,
+				10E8C0B15F0342C2A49F6969 /* ANGRY_EMOJI.png */,
+				02CE03345AD241D99D833D95 /* BIRTHDAY_CAKE_O.gif */,
+				613D9984DEF44245AF6E3BB4 /* BIRTHDAY_CAKE.gif */,
+				94E4E3C496FD4506830CE37C /* BIRTHDAY_CAKE.png */,
+				A156304459D649BCADD80C89 /* BLUSHING_EMOJI.gif */,
+				50399AAA9893460A9D91BDD1 /* BLUSHING_EMOJI.png */,
+				92E2C425C1984BEE86A7212B /* HEART_O.gif */,
+				7EBA2B498CAC462C8BAF4338 /* HEART.gif */,
+				245499123BB84E27948E066F /* HEART.png */,
+				CC78E7E567FD41089F61A6A1 /* HEARTEYE_EMOJI_O.gif */,
+				270AEAF6EEB2454183908C14 /* HEARTEYE_EMOJI.gif */,
+				5D75760AF0B048E1941799C1 /* HEARTEYE_EMOJI.png */,
+				BB2896772A584849973B24AA /* LAUGHING_EMOJI.gif */,
+				A5694BC145B64BA787990F57 /* LAUGHING_EMOJI.png */,
+				CFEDAC35CE3140F6812DA3CC /* MEDAL.gif */,
+				1DA8D07F03094F61982721CA /* MEDAL.png */,
+				665A1E8557F54FC7BC7AE292 /* PEACE_O.gif */,
+				AD702402B82546ABBAE2761D /* PEACE.gif */,
+				BCACEF6A3A0C462283C42DDD /* PEACE.png */,
+				3A60ED13ABAD4681ACBDD248 /* SAD_EMOJI_WITH_TEAR.gif */,
+				9BADCFFF38F74374928524D9 /* SAD_EMOJI_WITH_TEAR.png */,
+				4B2F78DA748D4E53AB57A8FD /* SAD_EMOJI.gif */,
+				076CF8304A9444F5937D9128 /* SAD_EMOJI.png */,
+				E45F24A318F144518A79CAFB /* TEARS_OF_JOY_O.gif */,
+				E124830F67954623A222320B /* TEARS_OF_JOY.gif */,
+				CBF0DF972A9D4002BE67A316 /* TEARS_OF_JOY.png */,
+				D5CF48A2A0B24B9C8804E202 /* THINKING_FACE_O.gif */,
+				6AB45F3F93C948C5AF0B4B53 /* THINKING_FACE.gif */,
+				FF5DC40714204D0C9E480B57 /* THINKING_FACE.png */,
+				1590B8622F6F4837A9409A5D /* THUMBS_UP_O.gif */,
+				010ADA65A19E4890B77D966E /* THUMBS_UP.gif */,
+				468E5A07716F496BADC0F713 /* THUMBS_UP.png */,
+				E474BE93E3D14E2592B4797D /* WOW_EMOJI.gif */,
+				7AB0949B8CB84CB2999ADB92 /* WOW_EMOJI.png */,
+				1011E1FA2CF742E29D043484 /* AntDesign.ttf */,
+				97E66D6267404527BEC6CCAD /* Entypo.ttf */,
+				44421975FD08467094EB0171 /* EvilIcons.ttf */,
+				32A2EAAC664F40CABF8EE242 /* Feather.ttf */,
+				E8DB5C8FEBBA41E2A336873B /* FontAwesome.ttf */,
+				1281A8EABB4143989F5967D5 /* FontAwesome5_Brands.ttf */,
+				48DFD8C9376D49A392029D5A /* FontAwesome5_Regular.ttf */,
+				B63F78D4113445BB8FAFE4E1 /* FontAwesome5_Solid.ttf */,
+				5401F980FBDA443BB81E953E /* Fontisto.ttf */,
+				9C9AC1E44F94453A900F9DAD /* Foundation.ttf */,
+				E3F958196AE747A5A76F5D87 /* Ionicons.ttf */,
+				F4A35909B7124A688371E077 /* MaterialCommunityIcons.ttf */,
+				5D697C5228914A929DA659EF /* MaterialIcons.ttf */,
+				F80DD3E1650743B98C979FCB /* Octicons.ttf */,
+				AFC270255B7849F391BA754B /* SimpleLineIcons.ttf */,
+				6F8B6B61FE8648CA8FB82804 /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -267,6 +438,63 @@
 				27515C27B45643A08110817E /* GvTimeRegular.ttf in Resources */,
 				65433CB54D7549BA93ABA685 /* LemonJellyPersonalUse.ttf in Resources */,
 				FD7E7B13F003463C8047D617 /* Maghrib.ttf in Resources */,
+				3762D54CDD5C4F2F9D920BAC /* AF1.png in Resources */,
+				9EB02C3BAA9A4F30B3FDB768 /* AF2.png in Resources */,
+				F9D271F0FB6246ED9EC8DBEE /* AF3.png in Resources */,
+				32AB498A7E934F5387531F88 /* AM1.png in Resources */,
+				D7F7D409DBD9423C90E4AB1A /* AM2.png in Resources */,
+				914289F3B3C642EF943E6D65 /* AM3.png in Resources */,
+				E06E71DE10B5436FA8EDDAEF /* ANGRY_EMOJI.gif in Resources */,
+				0156BEF6A5034C81BD57C0A2 /* ANGRY_EMOJI.png in Resources */,
+				37755C4188434A4E975448AF /* BIRTHDAY_CAKE_O.gif in Resources */,
+				C4EF3C103ABC4FA790ADD4CF /* BIRTHDAY_CAKE.gif in Resources */,
+				F48BD813C6084AF9966F1E1C /* BIRTHDAY_CAKE.png in Resources */,
+				0C00225D03A44AA89067ED77 /* BLUSHING_EMOJI.gif in Resources */,
+				2BF5172728C34F34BE421919 /* BLUSHING_EMOJI.png in Resources */,
+				A89AD9BF48B040AC8D8A1D08 /* HEART_O.gif in Resources */,
+				1FAB1CC601D74EAD9E3B613A /* HEART.gif in Resources */,
+				D8C7FDB541AF4E588915BDEA /* HEART.png in Resources */,
+				07B22D8292744C4983E34765 /* HEARTEYE_EMOJI_O.gif in Resources */,
+				961B57D277824C408E43C3DF /* HEARTEYE_EMOJI.gif in Resources */,
+				0CE34D998EE04DA18F7F537B /* HEARTEYE_EMOJI.png in Resources */,
+				C0C4424BB7434D93B8F9F086 /* LAUGHING_EMOJI.gif in Resources */,
+				94CED21D6120409E808DDBD5 /* LAUGHING_EMOJI.png in Resources */,
+				720886097CAE4B128087B947 /* MEDAL.gif in Resources */,
+				CA53F2CC5DA047ECA3153214 /* MEDAL.png in Resources */,
+				57772A4E91414834879B000C /* PEACE_O.gif in Resources */,
+				23F415710F3B4D62A0CA1990 /* PEACE.gif in Resources */,
+				C2E331A87E1745BE95873093 /* PEACE.png in Resources */,
+				5E7A2045EB494014A016D9DC /* SAD_EMOJI_WITH_TEAR.gif in Resources */,
+				5E669EBCAB104AABBBEFF863 /* SAD_EMOJI_WITH_TEAR.png in Resources */,
+				95DBD687344F4C51AAD8BB35 /* SAD_EMOJI.gif in Resources */,
+				E0FBB2DA132B4D63802A0F64 /* SAD_EMOJI.png in Resources */,
+				A1D1F67623AC461A98A283AF /* TEARS_OF_JOY_O.gif in Resources */,
+				79037836E02340DE8729E505 /* TEARS_OF_JOY.gif in Resources */,
+				7BCCD485D98844ACBE725649 /* TEARS_OF_JOY.png in Resources */,
+				402F282AECE14D3DA45818A6 /* THINKING_FACE_O.gif in Resources */,
+				D7177AECC2944F28BE8F82C2 /* THINKING_FACE.gif in Resources */,
+				317E8AC95CAD4DB89397E31B /* THINKING_FACE.png in Resources */,
+				D019847584794F4A9FFFDB6D /* THUMBS_UP_O.gif in Resources */,
+				143AD83665784290BF7B5D35 /* THUMBS_UP.gif in Resources */,
+				B6A5C2E7346048BBB2A15A04 /* THUMBS_UP.png in Resources */,
+				727952DF70B94F8FB4732851 /* WOW_EMOJI.gif in Resources */,
+				800BFA85BD1D407E94AA7647 /* WOW_EMOJI.png in Resources */,
+				FF40CB06D7B44B7FB1EA3705 /* AntDesign.ttf in Resources */,
+				F05FFF34921F41068ACF1A76 /* Entypo.ttf in Resources */,
+				62B126780F284E2394FAB438 /* EvilIcons.ttf in Resources */,
+				1BEF23CA38E14DA89A6BAAEB /* Feather.ttf in Resources */,
+				7E195749219A40F3B725DD9C /* FontAwesome.ttf in Resources */,
+				4A403D944F5644FBA1599F33 /* FontAwesome5_Brands.ttf in Resources */,
+				2E2308D2D30D4A71BAC01BED /* FontAwesome5_Regular.ttf in Resources */,
+				B8A9A81D0FA844A3BC0B8349 /* FontAwesome5_Solid.ttf in Resources */,
+				20321948AAF84140817227B9 /* Fontisto.ttf in Resources */,
+				77E5C5B0A87442118C3050F7 /* Foundation.ttf in Resources */,
+				CF6BB102C044474098EB4AD4 /* Ionicons.ttf in Resources */,
+				6B79AF42EDC64BB389EA68AA /* MaterialCommunityIcons.ttf in Resources */,
+				2FD44D31D7ED4671B3279B8F /* MaterialIcons.ttf in Resources */,
+				54DF58A193B348DC95E6D755 /* Octicons.ttf in Resources */,
+				0C2AA33BB8C74CAA8F09527D /* SimpleLineIcons.ttf in Resources */,
+				919C34CE5BBB49619DD16A8D /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

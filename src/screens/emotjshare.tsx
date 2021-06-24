@@ -97,7 +97,7 @@ export default ({navigation}: IProp) => {
                 borderRadius: 25,
                 marginBottom: 5,
               }}
-              source={EMOJIS['AM1_PNG']}
+              source={{uri: 'https://placeimg.com/140/140/any'}}
             />
             <Text>User Zero</Text>
           </View>

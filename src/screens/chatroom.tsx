@@ -20,7 +20,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {GiftedChat} from 'react-native-gifted-chat';
+import {GiftedChat, Bubble, InputToolbar} from 'react-native-gifted-chat';
 
 import EMOJIS from '../../assets/emojis';
 import Carousel from 'react-native-snap-carousel';
@@ -63,10 +63,13 @@ interface IProp {
   navigation: any;
 }
 
+const sendIcon = (props: any) => (
+  <Icon {...props} name="arrowhead-right-outline" />
+);
+
 export default ({navigation}: IProp) => {
   const [thoughtModal, setThoughtModal] = useState(true);
   const theme = useTheme();
-  console.log(theme);
   interface IRProp {
     item: any;
     index: any;
@@ -82,13 +85,78 @@ export default ({navigation}: IProp) => {
         flex: 1,
         backgroundColor: '#fff',
       }}>
-      <GiftedChat
-        messages={[]}
-        onSend={messages => onSend(messages)}
-        user={{
-          _id: 1,
-        }}
-      />
+      <View
+        style={{
+          backgroundColor: theme['color-primary-400'],
+          flex: 2,
+          justifyContent: 'center',
+          alignItems: 'center',
+          //   paddingBottom: 30,
+          borderBottomLeftRadius: 50,
+          overflow: 'hidden',
+        }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 25,
+              fontFamily: 'BubbleBobble',
+            }}>
+            talk to each other...
+          </Text>
+        </View>
+      </View>
+      <View style={{flex: 12}}>
+        <GiftedChat
+          user={{_id: 1}}
+          renderSend={props => (
+            <Button appearance="ghost" size="large" accessoryLeft={sendIcon} />
+          )}
+          isTyping={true}
+          renderBubble={props => (
+            <Bubble
+              {...props}
+              wrapperStyle={{
+                right: {
+                  backgroundColor: theme['color-primary-400'],
+                },
+              }}
+            />
+          )}
+          messages={[
+            {
+              _id: 1,
+              text: 'Hello developer',
+              createdAt: new Date(),
+              image: 'https://placeimg.com/1400/1400/any',
+              user: {
+                _id: 1,
+                name: 'React Native',
+                avatar: 'https://placeimg.com/140/140/any',
+              },
+            },
+            {
+              _id: 1,
+              text: 'Hello developer',
+              createdAt: new Date(),
+              image: 'https://placeimg.com/1400/1400/any',
+              user: {
+                _id: 2,
+                name: 'React Native',
+                avatar: 'https://placeimg.com/140/140/any',
+              },
+            },
+          ]}
+          //   renderAccessory={props => <Icon name="person-outline" />}
+          onSend={messages => onSend(messages)}
+        />
+      </View>
     </View>
   );
 };
