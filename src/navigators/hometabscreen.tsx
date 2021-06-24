@@ -11,13 +11,17 @@ import ForgotStackScreen from './forgotstackscreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import EmotjShare from '../screens/emotjshare';
+import ChatRoom from '../screens/chatroom';
 import {View} from 'react-native';
 
+const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
+
+const MessageIcon = (props: any) => (
+  <Icon {...props} name="message-square-outline" />
+);
+const ImageIcon = (props: any) => <Icon {...props} name="image-outline" />;
+
 const PersonIcon = (props: any) => <Icon {...props} name="person-outline" />;
-
-const BellIcon = (props: any) => <Icon {...props} name="bell-outline" />;
-
-const EmailIcon = () => <Icon name="email-outline" />;
 
 const HomeTabs = createBottomTabNavigator();
 interface IProp {
@@ -35,13 +39,17 @@ const BottomTabBar = ({navigation, state}: IProp) => (
     appearance="noIndicator"
     selectedIndex={state.index}
     onSelect={index => navigation.navigate(state.routeNames[index])}>
+    <BottomNavigationTab icon={HomeIcon} />
+    <BottomNavigationTab icon={MessageIcon} />
+    <BottomNavigationTab icon={ImageIcon} />
     <BottomNavigationTab icon={PersonIcon} />
-    <BottomNavigationTab icon={BellIcon} />
   </BottomNavigation>
 );
 export default () => (
   <HomeTabs.Navigator tabBar={props => <BottomTabBar {...props} />}>
     <HomeTabs.Screen name="Home" component={EmotjShare} />
-    <HomeTabs.Screen name="Event" component={EmotjShare} />
+    <HomeTabs.Screen name="Chat" component={ChatRoom} />
+    <HomeTabs.Screen name="Image" component={ChatRoom} />
+    <HomeTabs.Screen name="Profile" component={ChatRoom} />
   </HomeTabs.Navigator>
 );
