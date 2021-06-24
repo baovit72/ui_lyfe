@@ -84,6 +84,7 @@ const useChatRoomState = (initialValue: any) => {
 export default ({navigation}: IProp) => {
   const [thoughtModal, setThoughtModal] = useState(true);
   const emojiState = useChatRoomState(false);
+  const chatState = useChatRoomState('');
   const theme = useTheme();
   interface IRProp {
     item: any;
@@ -251,6 +252,11 @@ export default ({navigation}: IProp) => {
               //   )}
               //   renderAccessory={props => <Icon name="person-outline" />}
               onSend={messages => onSend(messages)}
+              text={chatState.value}
+              onInputTextChanged={text => {
+                chatState.setValue(text);
+                console.log(text);
+              }}
             />
           </TouchableOpacity>
         </View>
@@ -260,7 +266,7 @@ export default ({navigation}: IProp) => {
         showBoard={emojiState.value}
         containerStyle={{position: emojiState.value ? 'relative' : 'absolute'}}
         onClick={(emoji: Object) => {
-          console.log(emoji);
+          chatState.setValue(chatState.value + emoji.code);
         }}
       />
     </React.Fragment>
