@@ -65,7 +65,6 @@ interface IProp {
 export default ({navigation}: IProp) => {
   const [thoughtModal, setThoughtModal] = useState(true);
   const theme = useTheme();
-  console.log(theme);
   interface IRProp {
     item: any;
     index: any;
@@ -75,6 +74,7 @@ export default ({navigation}: IProp) => {
       <Card
         style={{
           ...styles.emotjCard,
+          padding: 0,
           // borderColor: theme['color-primary-400'],
           // backgroundColor: theme['color-primary-200'],
         }}>
@@ -82,10 +82,14 @@ export default ({navigation}: IProp) => {
           style={{
             flex: 1,
             flexDirection: 'row',
-            overflow: 'scroll',
-            height: 70,
           }}>
-          <View style={{flex: 1, alignItems: 'center'}}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: -17,
+            }}>
             <Image
               style={{
                 width: 50,
@@ -122,21 +126,6 @@ export default ({navigation}: IProp) => {
               }}>
               The Maldives, officially the Republic of Maldives, is a smallkijk
               df df s fds f dsf ds dsfThe Maldives, officially the Republic of
-              Maldives, is a smallkijk df df s fds f dsf ds dsfThe Maldives,
-              officially the Republic of Maldives, is a smallkijk df df s fds f
-              dsf ds dsfThe Maldives, officially the Republic of Maldives, is a
-              smallkijk df df s fds f dsf ds dsfThe Maldives, officially the
-              Republic of Maldives, is a smallkijk df df s fds f dsf ds dsfThe
-              Maldives, officially the Republic of Maldives, is a smallkijk df
-              df s fds f dsf ds dsfThe Maldives, officially the Republic of
-              Maldives, is a smallkijk df df s fds f dsf ds dsfThe Maldives,
-              officially the Republic of Maldives, is a smallkijk df df s fds f
-              dsf ds dsfThe Maldives, officially the Republic of Maldives, is a
-              smallkijk df df s fds f dsf ds dsfThe Maldives, officially the
-              Republic of Maldives, is a smallkijk df df s fds f dsf ds dsfThe
-              Maldives, officially the Republic of Maldives, is a smallkijk df
-              df s fds f dsf ds dsfThe Maldives, officially the Republic of
-              Maldives, is a smallkijk df df s fds f dsf ds dsf
             </Text>
           </View>
         </View>
@@ -169,11 +158,11 @@ export default ({navigation}: IProp) => {
         status="primary">
         Lyfe
       </Text> */}
-      <Modal visible={thoughtModal} style={{zIndex: 5}}>
+      {/* <Modal visible={thoughtModal} style={{zIndex: 5}}>
         <Card disabled={true}>
           <Text>Welcome to UI Kitten 😻</Text>
         </Card>
-      </Modal>
+      </Modal> */}
       <View
         style={{
           backgroundColor: theme['color-primary-400'],
@@ -184,23 +173,24 @@ export default ({navigation}: IProp) => {
           borderBottomLeftRadius: 50,
           overflow: 'hidden',
         }}>
-        <Text
+        <View
           style={{
-            marginLeft: 10,
+            marginTop: 10,
             flex: 1,
-            color: '#fff',
-            // fontWeight: 'bold',
-            fontSize: 17,
             alignItems: 'center',
             justifyContent: 'center',
             alignContent: 'center',
-            alignSelf: 'center',
-            paddingTop: 20,
-            lineHeight: 17,
-            fontFamily: 'BubbleBobble',
           }}>
-          how do you feel now?
-        </Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 25,
+              fontFamily: 'BubbleBobble',
+            }}>
+            I feel...
+          </Text>
+        </View>
+
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}

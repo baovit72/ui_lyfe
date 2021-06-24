@@ -46,7 +46,11 @@ const BottomTabBar = ({navigation, state}: IProp) => (
   </BottomNavigation>
 );
 export default () => (
-  <HomeTabs.Navigator tabBar={props => <BottomTabBar {...props} />}>
+  <HomeTabs.Navigator
+    tabBarOptions={{
+      keyboardHidesTabBar: true,
+    }}
+    tabBar={props => <BottomTabBar {...props} />}>
     <HomeTabs.Screen name="Home" component={EmotjShare} />
     <HomeTabs.Screen name="Chat" component={ChatRoom} />
     <HomeTabs.Screen name="Image" component={ChatRoom} />
