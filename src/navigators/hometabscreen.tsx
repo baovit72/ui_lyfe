@@ -13,6 +13,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import EmotjShare from '../screens/emotjshare';
 import ImageScreen from '../screens/images';
 import ChatRoom from '../screens/chatroom';
+import Profile from '../screens/profile';
 import {View} from 'react-native';
 
 const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
@@ -48,6 +49,7 @@ const BottomTabBar = ({navigation, state}: IProp) => (
 );
 export default () => (
   <HomeTabs.Navigator
+    initialRouteName="Profile"
     tabBarOptions={{
       keyboardHidesTabBar: true,
       style: {position: 'absolute'},
@@ -56,6 +58,6 @@ export default () => (
     <HomeTabs.Screen name="Home" component={EmotjShare} />
     <HomeTabs.Screen name="Chat" component={ChatRoom} />
     <HomeTabs.Screen name="Image" component={ImageScreen} />
-    <HomeTabs.Screen name="Profile" component={ChatRoom} />
+    <HomeTabs.Screen name="Profile" component={Profile} />
   </HomeTabs.Navigator>
 );
