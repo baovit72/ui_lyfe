@@ -139,7 +139,33 @@ export default ({navigation}: IProp) => {
         <View
           style={{
             flex: 22,
-          }}></View>
+          }}>
+          <Card>
+            <Lightbox navigator={navigator}>
+              <Image
+                style={{height: 300}}
+                source={{
+                  uri: 'http://knittingisawesome.com/wp-content/uploads/2012/12/cat-wearing-a-reindeer-hat1.jpg',
+                }}
+              />
+            </Lightbox>
+          </Card>
+          <Button
+            style={{
+              position: 'absolute',
+              left: Dimensions.get('window').width / 2 - 50,
+              top: 100,
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              borderWidth: 0,
+              zIndex: 2,
+            }}
+            appearance="outline"
+            status="control"
+            accessoryLeft={props => <Icon {...props} name="close-outline" />}
+            onPress={() => setThoughtModal(false)}></Button>
+        </View>
       </View>
     </React.Fragment>
   );
