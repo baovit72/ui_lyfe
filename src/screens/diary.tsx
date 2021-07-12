@@ -26,10 +26,16 @@ import {
 import {GiftedChat, Bubble, InputToolbar} from 'react-native-gifted-chat';
 
 import EMOJIS from '../../assets/emojis';
-import EmojiBoard from 'react-native-emoji-board';
+import TimeAgo from 'javascript-time-ago';
+
+// English.
+import en from 'javascript-time-ago/locale/en';
 import Carousel from 'react-native-snap-carousel';
 import {Keyboard} from 'react-native';
+TimeAgo.addDefaultLocale(en);
 
+// Create formatter (English).
+const timeAgo = new TimeAgo('en-US');
 /**
  * Stylesheet for the component
  */
@@ -117,6 +123,7 @@ export default ({navigation}: IProp) => {
         shadowRadius: 3.84,
         borderWidth: 1,
         borderColor: theme['color-primary-400'],
+        height: Dimensions.get('window').width * 0.9,
         // elevation: 5,
         // height: Dimensions.get('window').width / 0.9,
       }}>
@@ -139,13 +146,39 @@ export default ({navigation}: IProp) => {
           }}
         />
       </Lightbox>
-      <View style={{padding: 30, backgroundColor: 'white'}}>
-        <Text style={{color: 'gray'}}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vel
+      <View style={{padding: 30, paddingTop: 10, backgroundColor: 'white'}}>
+        <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              // justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{width: 30, height: 30, borderRadius: 15}}
+              source={{
+                uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
+              }}></Image>
+            <View>
+              <Text style={{fontWeight: 'bold', marginLeft: 10}}>Adam Lee</Text>
+              <Text style={{marginLeft: 10, color: 'gray'}}>
+                {timeAgo.format(new Date())}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <Text style={{color: 'black', marginTop: 10, fontStyle: 'italic'}}>
+          {'\t'}Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vel
           harum, distinctio alias nisi architecto ea eum dolorum at sit,
-          consequatur earum molestiae maiores, perferendis dolores mollitia
         </Text>
       </View>
+      <Button
+        style={{position: 'absolute', right: -5, bottom: 5}}
+        appearance="ghost"
+        accessoryLeft={props => (
+          <Icon {...props} name="trash-outline"></Icon>
+        )}></Button>
     </View>
   );
   Keyboard.addListener('keyboardDidShow', hideEmoji);
