@@ -12,6 +12,8 @@ import {
   useTheme,
   Modal,
 } from '@ui-kitten/components';
+
+import Lightbox from 'react-native-lightbox';
 import {
   Dimensions,
   FlatList,
@@ -97,7 +99,55 @@ export default ({navigation}: IProp) => {
   function hideEmoji() {
     emojiState.setValue(false);
   }
-
+  const _renderItem = data => (
+    <View
+      style={{
+        // width: Dimensions.get('window').width * 0.9,
+        borderRadius: 30,
+        padding: 0,
+        marginLeft: 20,
+        marginRight: 20,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderWidth: 1,
+        borderColor: theme['color-primary-400'],
+        // elevation: 5,
+        // height: Dimensions.get('window').width / 0.9,
+      }}>
+      <Lightbox
+        activeProps={{
+          style: {
+            flex: 1,
+            resizeMode: 'contain',
+          },
+        }}>
+        <Image
+          style={{
+            margin: 0,
+            width: '100%',
+            height: Dimensions.get('window').width * 0.5,
+            resizeMode: 'cover',
+          }}
+          source={{
+            uri: 'https://images.unsplash.com/photo-1623920483953-e0e9b7e64600?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+          }}
+        />
+      </Lightbox>
+      <View style={{padding: 30, backgroundColor: 'white'}}>
+        <Text style={{color: 'gray'}}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vel
+          harum, distinctio alias nisi architecto ea eum dolorum at sit,
+          consequatur earum molestiae maiores, perferendis dolores mollitia
+        </Text>
+      </View>
+    </View>
+  );
   Keyboard.addListener('keyboardDidShow', hideEmoji);
 
   return (
@@ -139,31 +189,54 @@ export default ({navigation}: IProp) => {
         <View
           style={{
             flex: 22,
+            paddingTop: 20,
           }}>
-          <Card>
-            <Lightbox navigator={navigator}>
-              <Image
-                style={{height: 300}}
-                source={{
-                  uri: 'http://knittingisawesome.com/wp-content/uploads/2012/12/cat-wearing-a-reindeer-hat1.jpg',
-                }}
-              />
-            </Lightbox>
-          </Card>
+          <Carousel
+            data={[
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+            ]}
+            vertical
+            // layoutCardOffset={`18`}
+            // layout="tinder"
+            renderItem={_renderItem}
+            sliderWidth={Dimensions.get('window').width * 0.9}
+            itemWidth={Dimensions.get('window').width * 0.9}
+            itemHeight={Dimensions.get('window').width * 0.9}
+            sliderHeight={Dimensions.get('window').width * 0.9}
+          />
+
           <Button
             style={{
               position: 'absolute',
-              left: Dimensions.get('window').width / 2 - 50,
-              top: 100,
-              width: 50,
-              height: 50,
-              borderRadius: 25,
+              right: 15,
+              backgroundColor: theme['color-primary-400'],
+              bottom: 15,
+              width: 60,
+              height: 60,
+              borderRadius: 35,
               borderWidth: 0,
-              zIndex: 2,
+              zIndex: 10,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.22,
+              shadowRadius: 2.22,
+              elevation: 3,
             }}
             appearance="outline"
             status="control"
-            accessoryLeft={props => <Icon {...props} name="close-outline" />}
+            accessoryLeft={props => <Icon {...props} name="plus-outline" />}
             onPress={() => setThoughtModal(false)}></Button>
         </View>
       </View>
