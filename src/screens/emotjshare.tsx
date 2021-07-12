@@ -38,11 +38,7 @@ const styles = StyleSheet.create({
   emotjText: {
     color: 'white',
   },
-  container: {
-    // height: '90%',
-    // borderRadius: 15,
-    // backgroundColor: '#fff',
-  },
+
   contentContainer: {
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -147,6 +143,7 @@ export default ({navigation}: IProp) => {
         onPress={() => {
           setSelectedEmo(item);
           setIsMakingThought(true);
+          setThoughtModal(true);
         }}>
         <Image
           style={{width: 75, height: '100%', flex: 1, marginBottom: 20}}
@@ -175,27 +172,13 @@ export default ({navigation}: IProp) => {
         flex: 1,
         backgroundColor: t_backgroundColor,
       }}>
-      {/* <Text
-        style={{
-          ...styles.logoTitle,
-          color: theme['color-primary-400'],
-          backgroundColor: '#fff',
-        }}
-        status="primary">
-        Lyfe
-      </Text> */}
-      {/* <Modal visible={thoughtModal} style={{zIndex: 5}}>
-        <Card disabled={true}>
-          <Text>Welcome to UI Kitten 😻</Text>
-        </Card>
-      </Modal> */}
       <View
         style={{
           backgroundColor: theme['color-primary-400'],
-          flex: 2,
+          height: 150,
           justifyContent: 'center',
           alignItems: 'center',
-          paddingBottom: 30,
+          // paddingBottom: 20,
           borderBottomLeftRadius: 50,
           overflow: 'hidden',
         }}>
@@ -216,12 +199,11 @@ export default ({navigation}: IProp) => {
             I feel...
           </Text>
         </View>
-
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}
-          style={styles.container}
+          style={{height: 75, marginTop: 5}}
           data={[
             'BIRTHDAY_CAKE',
             'ANGRY_EMOJI',
@@ -339,6 +321,21 @@ export default ({navigation}: IProp) => {
       /> */}
         </View>
       </View>
+
+      <Modal
+        visible={thoughtModal}
+        style={{
+          width: 200,
+          height: 200,
+        }}
+        // backdropStyle={styles.backdrop}
+        // onBackdropPress={() => setVisible(false)}
+      >
+        <Card disabled={true}>
+          <Text>Welcome to UI Kitten 😻</Text>
+          {/* <Button onPress={() => setVisible(false)}>DISMISS</Button> */}
+        </Card>
+      </Modal>
     </View>
   );
 };

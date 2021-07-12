@@ -49,7 +49,7 @@ const BottomTabBar = ({navigation, state}: IProp) => (
 );
 export default () => (
   <HomeTabs.Navigator
-    initialRouteName="Profile"
+    initialRouteName="Home"
     tabBarOptions={{
       keyboardHidesTabBar: true,
       style: {position: 'absolute'},
