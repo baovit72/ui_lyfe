@@ -324,17 +324,78 @@ export default ({navigation}: IProp) => {
 
       <Modal
         visible={thoughtModal}
+        onBackdropPress={() => setThoughtModal(false)}
         style={{
-          width: 200,
-          height: 200,
+          width: '85%',
+          borderRadius: 30,
+
+          borderWidth: 0,
+
+          paddingBottom: 50,
         }}
-        // backdropStyle={styles.backdrop}
+        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}
         // onBackdropPress={() => setVisible(false)}
       >
-        <Card disabled={true}>
-          <Text>Welcome to UI Kitten 😻</Text>
-          {/* <Button onPress={() => setVisible(false)}>DISMISS</Button> */}
+        <Card
+          style={{
+            borderRadius: 30,
+            backgroundColor: theme['color-primary-400'],
+            borderWidth: 0,
+            paddingTop: 0,
+          }}
+          disabled={true}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Input
+              multiline
+              textStyle={{
+                height: 120,
+                borderRadius: 30,
+              }}
+              placeholder={'write down your thoughts...'}
+              style={{
+                marginTop: 0,
+                flex: 5,
+                borderRadius: 30,
+              }}></Input>
+            <Image
+              source={EMOJIS[`${selectedEmo}_PNG`]}
+              style={{
+                position: 'absolute',
+                width: 50,
+                height: 50,
+                opacity: 0.5,
+                right: 0,
+                bottom: 0,
+                zIndex: 2,
+                transform: [{rotate: '-15deg'}],
+              }}></Image>
+            <Button
+              appearance="outline"
+              status="control"
+              accessoryLeft={props => <Icon {...props} name="edit-outline" />}
+              style={{flex: 1, borderRadius: 30, height: '95%', marginLeft: 10}}
+              onPress={() => setThoughtModal(false)}></Button>
+          </View>
         </Card>
+        <Button
+          style={{
+            position: 'absolute',
+            left: Dimensions.get('window').width / 2 - 50,
+            bottom: -25,
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            borderWidth: 0,
+          }}
+          appearance="outline"
+          status="control"
+          accessoryLeft={props => <Icon {...props} name="close-outline" />}
+          onPress={() => setThoughtModal(false)}></Button>
       </Modal>
     </View>
   );
