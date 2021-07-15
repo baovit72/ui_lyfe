@@ -60,7 +60,7 @@ interface IProp {
 }
 
 export default ({navigation}: IProp) => {
-  const [thoughtModal, setThoughtModal] = useState(true);
+  const [thoughtModal, setThoughtModal] = useState(false);
   const theme = useTheme();
   const t_backgroundColor = theme['background-basic-color-1'];
   interface IRProp {

@@ -7,7 +7,7 @@ import GroupScreen from '../screens/group';
 const AuthenticationStack = createStackNavigator();
 
 export default () => (
-  <AuthenticationStack.Navigator initialRouteName="Group">
+  <AuthenticationStack.Navigator initialRouteName="HomeTab">
     <AuthenticationStack.Screen
       options={{
         headerShown: false,

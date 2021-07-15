@@ -112,6 +112,7 @@ export default ({navigation}: IProp) => {
           });
         })
         .catch(e => {
+          console.log(JSON.stringify(e));
           Toast.show({
             type: 'error',
             text1: 'Please check your username or password',

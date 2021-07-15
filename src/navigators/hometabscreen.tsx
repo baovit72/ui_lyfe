@@ -83,7 +83,7 @@ export default () => {
             />
           ),
         }}
-        name="Home"
+        name="Feeling"
         component={EmotjShare}
       />
       <HomeTabs.Screen

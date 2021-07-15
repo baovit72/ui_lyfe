@@ -44,6 +44,7 @@ export default () => {
     firstLoad: true,
     group: null,
   });
+  console.disableYellowBox = true;
   useEffect(async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {

@@ -1,8 +1,11 @@
 var validator = require('validator');
 import axios from 'axios';
+import React from 'react';
+import ReactNative from 'react-native';
+// var RNUploader = ReactNative.NativeModules.RNUploader;
 
-const REST_DOMAIN = 'http://4aa625d7d035.ngrok.io/rest/';
-const GRAPH_DOMAIN = 'http://4aa625d7d035.ngrok.io/graphql';
+const REST_DOMAIN = 'http://10.0.2.2:2021/rest/';
+const GRAPH_DOMAIN = 'http://10.0.2.2:2021/graphql';
 export default {
   isValidPassword: (password: string) => password.length >= 8,
   isValidUsername: (username: string) => username.length > 0,
@@ -73,4 +76,35 @@ export default {
         .catch(e => reject(e)),
     );
   },
+  uploadImage: (token, image) =>
+    new Promise((resolve, reject) => {
+      let files = [
+        {
+          name: 'image',
+          filename: image.filename,
+          filepath: image.uri, // image from camera roll/assets library
+          filetype: image.type,
+        },
+      ];
+      let opts = {
+        url: REST_DOMAIN + 'image',
+        files: files,
+        method: 'POST', // optional: POST or PUT
+        headers: {Accept: 'application/json'}, // optional
+      };
+
+      // RNUploader.upload(opts, (err, response) => {
+      //   if (err) {
+      //     console.log(err);
+      //     return;
+      //   }
+
+      //   let status = response.status;
+      //   let responseString = response.data;
+      //   let json = JSON.parse(responseString);
+
+      //   console.log('upload complete with status ' + status);
+      // });
+    }),
 };
+c;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   ApplicationProvider,
   Button,
@@ -34,6 +34,9 @@ import en from 'javascript-time-ago/locale/en';
 import Carousel from 'react-native-snap-carousel';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Keyboard} from 'react-native';
+const {uploadImage} = require('./../utils').default;
+import GlobalContext from '../contexts/global.context';
+
 TimeAgo.addDefaultLocale(en);
 
 // Create formatter (English).
@@ -107,6 +110,8 @@ export default ({navigation}: IProp) => {
   const [thoughtModal, setThoughtModal] = useState(true);
   const emojiState = useChatRoomState(false);
   const theme = useTheme();
+
+  const {state, dispatch} = useContext(GlobalContext);
 
   useEffect(() => {
     image && setAddNew(true);
@@ -300,8 +305,11 @@ export default ({navigation}: IProp) => {
                     response.customButton,
                   );
                 } else if (response.assets.length) {
-                  setImage(response.assets[0]);
-                  console.log(response.uri);
+                  const imageInfo = response.assets[0];
+                  setImage(imageInfo);
+                  uploadImage(state.token, imageInfo)
+                    .then(data => console.log(data))
+                    .catch(error => console.log(error));
                 }
               })
             }></Button>
