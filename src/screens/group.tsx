@@ -16,7 +16,7 @@ import {
   View,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
-const {isValidCode, createGroup, sendLogin} = require('../utils/index').default;
+const {isValidCode, createGroup, joinGroup} = require('../utils/index').default;
 
 import GlobalContext from './../contexts/global.context';
 
@@ -94,6 +94,11 @@ const getState = (defValue: any) => {
 
 export default ({navigation}: IProp) => {
   const {state, dispatch} = useContext(GlobalContext);
+  useEffect(() => {
+    if (state.group) {
+      navigation.push('HomeTab');
+    }
+  }, [state.group]);
   const code = getState('');
 
   const onCreateGroup = () => {
@@ -102,10 +107,14 @@ export default ({navigation}: IProp) => {
     createGroup(state.token)
       .then((data: any) => {
         dispatch({type: 'LOAD_END'});
-        console.log(data);
+        console.log(data.data);
         dispatch({
           type: 'JOIN_GROUP',
           payload: {group: data.data},
+        });
+        Toast.show({
+          type: 'success',
+          text1: 'Your group has been created successfully!',
         });
       })
       .catch(e => {
@@ -119,21 +128,35 @@ export default ({navigation}: IProp) => {
   };
 
   const onJoinGroup = () => {
-    if (isValidCode(username.value) && isValidPassword(password.value)) {
+    code.setInvalid(!isValidCode(code.value));
+    if (isValidCode(code.value)) {
       dispatch({type: 'LOAD_BEGIN'});
-      createGroup(state.token)
+      console.log(state);
+      joinGroup(state.token, code.value)
         .then((data: any) => {
           dispatch({type: 'LOAD_END'});
+          console.log(data.data);
+          if (data.errors) {
+            return Toast.show({
+              type: 'error',
+              text1: 'Join code not found',
+            });
+          }
           dispatch({
-            type: 'AUTHENTICATE',
-            payload: {token: data.token, user: data.user},
+            type: 'JOIN_GROUP',
+            payload: {group: data.data.joinGroup},
+          });
+          Toast.show({
+            type: 'success',
+            text1: 'You has joined the group successfully!',
           });
         })
         .catch(e => {
           Toast.show({
             type: 'error',
-            text1: 'Please check your username or password',
+            text1: 'Join code not found',
           });
+          console.log(e);
           dispatch({type: 'LOAD_END'});
         });
     }
@@ -179,11 +202,11 @@ export default ({navigation}: IProp) => {
             textAlign: 'center',
             fontStyle: 'italic',
           }}>
-          Already have a group code?{' '}
+          Already have a group code?
         </Text>
       </View>
       <Input
-        autoCapitalize="none"
+        autoCapitalize="characters"
         style={styles.inputField}
         placeholder="Code"
         size="large"

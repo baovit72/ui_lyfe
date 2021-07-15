@@ -60,4 +60,17 @@ export default {
         .catch(e => reject(e)),
     );
   },
+  joinGroup: (token, code) => {
+    const query = `mutation{joinGroup(group:{code:\"${code}\"}){code, createdAt}}`;
+    return new Promise((resolve, reject) =>
+      axios
+        .post(
+          GRAPH_DOMAIN,
+          {query},
+          {headers: {Authorization: 'Bearer ' + token}},
+        )
+        .then(data => resolve(data.data))
+        .catch(e => reject(e)),
+    );
+  },
 };
