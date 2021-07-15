@@ -1,8 +1,9 @@
 var validator = require('validator');
 import axios from 'axios';
+import RNFetchBlob from 'rn-fetch-blob';
 
-const REST_DOMAIN = 'http://4aa625d7d035.ngrok.io/rest/';
-const GRAPH_DOMAIN = 'http://4aa625d7d035.ngrok.io/graphql';
+const REST_DOMAIN = 'http://10.0.2.2:2021/rest/';
+const GRAPH_DOMAIN = 'http://10.0.2.2:2021/graphql';
 export default {
   isValidPassword: (password: string) => password.length >= 8,
   isValidUsername: (username: string) => username.length > 0,
@@ -72,5 +73,25 @@ export default {
         .then(data => resolve(data.data))
         .catch(e => reject(e)),
     );
+  },
+  getImageBase64: uri => {
+    const fs = RNFetchBlob.fs;
+    let imagePath = '';
+    RNFetchBlob.config({
+      fileCache: true,
+    })
+      .fetch('GET', 'http://www.example.com/image.png')
+      // the image is now dowloaded to device's storage
+      .then(resp => {
+        // the image path you can use it directly with Image component
+        imagePath = resp.path();
+        return resp.readFile('base64');
+      })
+      .then(base64Data => {
+        // here's base64 encoded image
+        console.log(base64Data);
+        // remove the file from storage
+        return fs.unlink(imagePath);
+      });
   },
 };
