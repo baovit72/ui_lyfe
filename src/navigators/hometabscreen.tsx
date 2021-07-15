@@ -5,18 +5,25 @@ import SignupScreen from '../screens/register';
 import {
   BottomNavigation,
   BottomNavigationTab,
-  Icon,
   useTheme,
 } from '@ui-kitten/components';
 import ForgotStackScreen from './forgotstackscreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+
+import {
+  AnimatedTabBarNavigator,
+  DotSize, // optional
+  TabElementDisplayOptions, // optional
+  TabButtonLayout, // optional
+  IAppearanceOptions, // optional
+} from 'react-native-animated-nav-tab-bar';
 
 import EmotjShare from '../screens/emotjshare';
 import DiaryScreen from '../screens/diary';
 import ChatRoom from '../screens/chatroom';
 import Profile from '../screens/profile';
 import {View} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
 
@@ -27,7 +34,7 @@ const ImageIcon = (props: any) => <Icon {...props} name="image-outline" />;
 
 const PersonIcon = (props: any) => <Icon {...props} name="person-outline" />;
 
-const HomeTabs = createMaterialBottomTabNavigator();
+const HomeTabs = AnimatedTabBarNavigator();
 interface IProp {
   navigation: any;
   state: any;
@@ -54,49 +61,69 @@ export default () => {
 
   return (
     <HomeTabs.Navigator
-      // shifting
-      inactiveColor={theme['color-primary-400']}
-      activeColor={theme['color-primary-400']}
+      lazy={false}
       initialRouteName="Diary"
       // barStyle={{backgroundColor: 'white'}}
       tabBarOptions={{
         keyboardHidesTabBar: true,
         style: {position: 'absolute'},
+        activeTintColor: theme['color-primary-400'],
+        inactiveTintColor: '#222222',
       }}
       // tabBar={props => <BottomTabBar {...props} />}
     >
       <HomeTabs.Screen
         options={{
-          tabBarLabel: '',
-          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
-          tabBarAccessibilityLabel: 'Home',
+          tabBarIcon: ({focused, color, size}) => (
+            <Icon
+              name="share-2"
+              size={size ? size : 24}
+              color={focused ? color : '#222222'}
+              focused={focused}
+            />
+          ),
         }}
         name="Home"
         component={EmotjShare}
       />
       <HomeTabs.Screen
         options={{
-          tabBarLabel: 'dsdsd',
-          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
-          tabBarAccessibilityLabel: 'Home',
+          tabBarIcon: ({focused, color, size}) => (
+            <Icon
+              name="message-circle"
+              size={size ? size : 24}
+              color={focused ? color : '#222222'}
+              focused={focused}
+            />
+          ),
         }}
         name="Chat"
         component={ChatRoom}
       />
       <HomeTabs.Screen
         options={{
-          tabBarLabel: 'dsdsd',
-          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
-          tabBarAccessibilityLabel: 'Home',
+          tabBarIcon: ({focused, color, size}) => (
+            <Icon
+              name="image"
+              size={size ? size : 24}
+              color={focused ? color : '#222222'}
+              focused={focused}
+            />
+          ),
         }}
         name="Diary"
         component={DiaryScreen}
       />
       <HomeTabs.Screen
         options={{
-          tabBarLabel: '',
-          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
-          tabBarAccessibilityLabel: 'Home',
+          tabBarIcon: ({focused, color, size}) => (
+            <Icon
+              name="user"
+              size={size ? size : 24}
+              color={focused ? color : '#222222'}
+              focused={focused}
+            />
+          ),
         }}
         name="Profile"
         component={Profile}
