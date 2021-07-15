@@ -8,6 +8,7 @@ import {
   Input,
 } from '@ui-kitten/components';
 import {
+  Dimensions,
   Image,
   ImageBackground,
   StyleSheet,
@@ -15,10 +16,10 @@ import {
   View,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
-const {isValidUsername, isValidPassword, sendLogin} =
-  require('../utils/index').default;
+const {isValidCode, createGroup, sendLogin} = require('../utils/index').default;
 
 import GlobalContext from './../contexts/global.context';
+
 /**
  * Stylesheet for the component
  */
@@ -93,17 +94,34 @@ const getState = (defValue: any) => {
 
 export default ({navigation}: IProp) => {
   const {state, dispatch} = useContext(GlobalContext);
+  const code = getState('');
 
-  const username = getState('');
-  const password = getState('');
-  const securePassword = getState(true);
+  const onCreateGroup = () => {
+    dispatch({type: 'LOAD_BEGIN'});
+    console.log(state);
+    createGroup(state.token)
+      .then((data: any) => {
+        dispatch({type: 'LOAD_END'});
+        console.log(data);
+        dispatch({
+          type: 'JOIN_GROUP',
+          payload: {group: data.data},
+        });
+      })
+      .catch(e => {
+        Toast.show({
+          type: 'error',
+          text1: 'You are already in a group',
+        });
+        console.log(e);
+        dispatch({type: 'LOAD_END'});
+      });
+  };
 
-  const login = () => {
-    username.setInvalid(!isValidUsername(username.value));
-    password.setInvalid(!isValidPassword(password.value));
-    if (isValidUsername(username.value) && isValidPassword(password.value)) {
+  const onJoinGroup = () => {
+    if (isValidCode(username.value) && isValidPassword(password.value)) {
       dispatch({type: 'LOAD_BEGIN'});
-      sendLogin(username.value, password.value)
+      createGroup(state.token)
         .then((data: any) => {
           dispatch({type: 'LOAD_END'});
           dispatch({
@@ -134,96 +152,69 @@ export default ({navigation}: IProp) => {
       source={require('../../assets/authback.png')}
       //   imageStyle={styles.backgroundImage}
       style={styles.background}>
-      <Text style={styles.logoTitle} status="primary">
-        Lyfe
-      </Text>
+      <View
+        style={{
+          marginTop: Dimensions.get('window').height / 2 - 200,
+        }}></View>
 
-      <Input
-        autoCapitalize="none"
-        style={styles.inputField}
-        placeholder="Username"
-        size="large"
-        status={username.invalid && 'danger'}
-        caption={
-          username.invalid && (
-            <View>
-              <Text
-                style={{
-                  color: 'red',
-                  paddingTop: 5,
-                  paddingLeft: 10,
-                  textAlign: 'center',
-                  fontSize: 10,
-                  fontStyle: 'italic',
-                }}>
-                Username must not be empty
-              </Text>
-            </View>
-          )
-        }
-        value={username.value}
-        onChangeText={text => username.setValue(text)}
-      />
-      <Input
-        autoCapitalize="none"
-        style={styles.inputField}
-        placeholder="Password"
-        size="large"
-        secureTextEntry={securePassword.value}
-        status={password.invalid && 'danger'}
-        value={password.value}
-        accessoryRight={props => (
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => securePassword.setValue(!securePassword.value)}>
-            <Icon
-              {...props}
-              name={
-                securePassword.value ? 'eye-off-outline' : 'eye-outline'
-              }></Icon>
-          </TouchableOpacity>
-        )}
-        caption={
-          password.invalid && (
-            <View>
-              <Text
-                style={{
-                  color: 'red',
-                  paddingTop: 5,
-                  paddingLeft: 10,
-                  textAlign: 'center',
-                  fontSize: 10,
-                  fontStyle: 'italic',
-                }}>
-                Password must be at least 8 letters
-              </Text>
-            </View>
-          )
-        }
-        onChangeText={text => password.setValue(text)}
-      />
-      <Button style={styles.loginButton} onPress={login}>
-        Login
-      </Button>
       <Button
-        onPress={() => {
-          navigation.push('Forgot');
-        }}
+        onPress={onCreateGroup}
         style={styles.loginButton}
-        appearance="ghost">
-        Forgot password?
+        appearance="outline">
+        Create group
       </Button>
-      <View style={styles.flexRow}>
-        <Text style={styles.noAccountDesc}>Don't have an account?</Text>
-        <Button
-          onPress={() => {
-            navigation.push('Signup');
-          }}
-          style={styles.signupButton}
-          appearance="ghost">
-          Sign Up
-        </Button>
+      <View
+        style={{
+          borderTopWidth: 1,
+          borderColor: 'rgba(0,0,0,0.1)',
+          width: '70%',
+          marginTop: 40,
+          marginBottom: 20,
+        }}>
+        <Text
+          style={{
+            color: 'rgba(0,0,0,0.5)',
+            fontSize: 10,
+            paddingTop: 5,
+            textAlign: 'center',
+            fontStyle: 'italic',
+          }}>
+          Already have a group code?{' '}
+        </Text>
       </View>
+      <Input
+        autoCapitalize="none"
+        style={styles.inputField}
+        placeholder="Code"
+        size="large"
+        status={code.invalid && 'danger'}
+        caption={
+          code.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Code must be 5 letters
+              </Text>
+            </View>
+          )
+        }
+        value={code.value}
+        onChangeText={text => code.setValue(text)}
+      />
+
+      <Button
+        style={styles.loginButton}
+        appearance="outline"
+        onPress={onJoinGroup}>
+        Join this group
+      </Button>
     </ImageBackground>
   );
 };

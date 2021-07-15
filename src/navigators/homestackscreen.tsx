@@ -2,11 +2,19 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeTabScreen from './hometabscreen';
 import {View} from 'react-native';
+import GroupScreen from '../screens/group';
 
 const AuthenticationStack = createStackNavigator();
 
 export default () => (
-  <AuthenticationStack.Navigator initialRouteName="HomeTab">
+  <AuthenticationStack.Navigator initialRouteName="Group">
+    <AuthenticationStack.Screen
+      options={{
+        headerShown: false,
+        animationEnabled: true,
+      }}
+      name="Group"
+      component={GroupScreen}></AuthenticationStack.Screen>
     <AuthenticationStack.Screen
       options={{
         headerShown: false,

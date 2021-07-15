@@ -243,7 +243,7 @@ export default ({navigation}: IProp) => {
               marginBottom: 20,
             }}>
             <Text category="h5" style={{color: theme['color-primary-400']}}>
-              The great tigers
+              today feelings
             </Text>
           </View>
           <FlatList

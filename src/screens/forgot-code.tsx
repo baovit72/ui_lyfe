@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   ApplicationProvider,
   Button,
@@ -8,6 +8,18 @@ import {
   Input,
 } from '@ui-kitten/components';
 import {Image, ImageBackground, StyleSheet, View} from 'react-native';
+import global from '../contexts/global.context';
+import GlobalContext from '../contexts/global.context';
+import Toast from 'react-native-toast-message';
+
+const {
+  sendSignup,
+  isValidName,
+  isValidPassword,
+  isValidEmail,
+  sendRestore,
+  isValidUsername,
+} = require('../utils').default;
 
 /**
  * Stylesheet for the component
@@ -66,10 +78,38 @@ const styles = StyleSheet.create({
 interface IProp {
   navigation: any;
 }
+const getState = (defValue: any) => {
+  const [value, setValue] = useState(defValue);
+  const [invalid, setInvalid] = useState(false);
+  return {value, setValue, invalid, setInvalid};
+};
 
 export default ({navigation}: IProp) => {
-  const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
+  const {state, dispatch} = useContext(GlobalContext);
+  const email = getState('');
+  const restore = () => {
+    email.setInvalid(!isValidEmail(email.value));
+    if (isValidEmail(email.value)) {
+      dispatch({type: 'LOAD_BEGIN'});
+      sendRestore(email.value)
+        .then((data: any) => {
+          dispatch({type: 'LOAD_END'});
+          Toast.show({
+            type: 'success',
+            text1:
+              "We've sent you an email, please follow the instructions to restore your password!",
+            autoHide: false,
+          });
+        })
+        .catch(e => {
+          Toast.show({
+            type: 'error',
+            text1: "Email doesn't exist",
+          });
+          dispatch({type: 'LOAD_END'});
+        });
+    }
+  };
   return (
     <ImageBackground
       source={require('../../assets/authback.png')}
@@ -79,25 +119,40 @@ export default ({navigation}: IProp) => {
         Lyfe
       </Text>
       <Input
+        status={email.invalid && 'danger'}
+        caption={
+          email.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Email must be valid
+              </Text>
+            </View>
+          )
+        }
+        autoCapitalize="none"
         style={styles.inputField}
         placeholder="Email"
         size="large"
-        value={email}
-        onChangeText={text => setEmail(text)}
+        value={email.value}
+        onChangeText={text => email.setValue(text)}
       />
-      {/* <Input
-        style={styles.inputField}
-        placeholder="Code"
-        size="large"
-        value={code}
-        onChangeText={text => setCode(text)}
-      /> */}
+      <Button style={styles.loginButton} onPress={restore}>
+        Restore my password
+      </Button>
       <Button
-        style={styles.loginButton}
         onPress={() => {
-          navigation.push('forgotpass');
-        }}>
-        Send code
+          navigation.push('Login');
+        }}
+        appearance="ghost">
+        Log In
       </Button>
     </ImageBackground>
   );

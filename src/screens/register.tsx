@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   ApplicationProvider,
   Button,
@@ -7,7 +7,24 @@ import {
   Text,
   Input,
 } from '@ui-kitten/components';
-import {Image, ImageBackground, StyleSheet, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import global from '../contexts/global.context';
+import GlobalContext from '../contexts/global.context';
+import Toast from 'react-native-toast-message';
+
+const {
+  sendSignup,
+  isValidName,
+  isValidPassword,
+  isValidEmail,
+  isValidUsername,
+} = require('../utils').default;
 
 /**
  * Stylesheet for the component
@@ -68,9 +85,58 @@ const styles = StyleSheet.create({
 interface IProp {
   navigation: any;
 }
+
+const getState = (defValue: any) => {
+  const [value, setValue] = useState(defValue);
+  const [invalid, setInvalid] = useState(false);
+  return {value, setValue, invalid, setInvalid};
+};
+
 export default ({navigation}: IProp) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const {state, dispatch} = useContext(GlobalContext);
+  const username = getState('');
+  const password = getState('');
+  const name = getState('');
+  const email = getState('');
+  const securePassword = getState(true);
+
+  const signup = () => {
+    username.setInvalid(!isValidUsername(username.value));
+    password.setInvalid(!isValidPassword(password.value));
+    name.setInvalid(!isValidName(name.value));
+    email.setInvalid(!isValidEmail(email.value));
+    if (
+      isValidUsername(username.value) &&
+      isValidPassword(password.value) &&
+      isValidName(name.value) &&
+      isValidEmail(email.value)
+    ) {
+      dispatch({type: 'LOAD_BEGIN'});
+      sendSignup(name.value, username.value, email.value, password.value)
+        .then((data: any) => {
+          dispatch({type: 'LOAD_END'});
+          Toast.show({
+            type: 'success',
+            text1: 'Your account has been created successfully!',
+          });
+          navigation.push('Login');
+        })
+        .catch(e => {
+          console.log(e);
+          console.log(e.response);
+          const data = e.response.data;
+          Toast.show({
+            type: 'error',
+            text1:
+              data.duplicate &&
+              data.duplicate[0].toUpperCase() +
+                data.duplicate.slice(1) +
+                ' has been taken!',
+          });
+          dispatch({type: 'LOAD_END'});
+        });
+    }
+  };
   return (
     <ImageBackground
       source={require('../../assets/authback.png')}
@@ -80,40 +146,122 @@ export default ({navigation}: IProp) => {
         Lyfe
       </Text>
       <Input
+        status={name.invalid && 'danger'}
+        caption={
+          name.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Name must not be empty
+              </Text>
+            </View>
+          )
+        }
         style={styles.inputField}
         placeholder="Name"
         size="large"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        value={name.value}
+        onChangeText={text => name.setValue(text)}
       />
       <Input
+        status={username.invalid && 'danger'}
+        caption={
+          username.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Username must not be empty
+              </Text>
+            </View>
+          )
+        }
+        autoCapitalize="none"
         style={styles.inputField}
         placeholder="Username"
         size="large"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        value={username.value}
+        onChangeText={text => username.setValue(text)}
       />
       <Input
+        status={email.invalid && 'danger'}
+        caption={
+          email.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Email must be valid
+              </Text>
+            </View>
+          )
+        }
+        autoCapitalize="none"
         style={styles.inputField}
         placeholder="Email"
         size="large"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        value={email.value}
+        onChangeText={text => email.setValue(text)}
       />
 
       <Input
+        status={password.invalid && 'danger'}
+        caption={
+          password.invalid && (
+            <View>
+              <Text
+                style={{
+                  color: 'red',
+                  paddingTop: 5,
+                  paddingLeft: 10,
+                  textAlign: 'center',
+                  fontSize: 10,
+                  fontStyle: 'italic',
+                }}>
+                Password must be at least 8 letters
+              </Text>
+            </View>
+          )
+        }
+        accessoryRight={props => (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => securePassword.setValue(!securePassword.value)}>
+            <Icon
+              {...props}
+              name={
+                securePassword.value ? 'eye-off-outline' : 'eye-outline'
+              }></Icon>
+          </TouchableOpacity>
+        )}
+        secureTextEntry={securePassword.value}
+        autoCapitalize="none"
         style={styles.inputField}
         placeholder="Password"
-        secureTextEntry
         size="large"
-        value={password}
-        onChangeText={text => setPassword(text)}
+        value={password.value}
+        onChangeText={text => password.setValue(text)}
       />
-      <Button
-        style={styles.loginButton}
-        onPress={() => {
-          console.log('Login pressed');
-        }}>
+      <Button style={styles.loginButton} onPress={signup}>
         Signup
       </Button>
       <View style={styles.flexRow}>

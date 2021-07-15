@@ -11,6 +11,7 @@ import {
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
 import Entry from './src/index';
+// require('dotenv').config();
 
 const theme = require('./assets/theme.json');
 // const HeartIcon = (

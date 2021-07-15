@@ -19,6 +19,7 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -31,6 +32,7 @@ import TimeAgo from 'javascript-time-ago';
 // English.
 import en from 'javascript-time-ago/locale/en';
 import Carousel from 'react-native-snap-carousel';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {Keyboard} from 'react-native';
 TimeAgo.addDefaultLocale(en);
 
@@ -88,12 +90,27 @@ const useChatRoomState = (initialValue: any) => {
   const [value, setValue] = useState(initialValue);
   return {value, setValue};
 };
+let options = {
+  title: 'Select Image',
+  customButtons: [
+    {name: 'customOptionKey', title: 'Choose Photo from Custom Option'},
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
 
 export default ({navigation}: IProp) => {
+  const [image, setImage] = useState(null);
+  const [addNew, setAddNew] = useState(false);
   const [thoughtModal, setThoughtModal] = useState(true);
   const emojiState = useChatRoomState(false);
   const theme = useTheme();
-  console.log(theme);
+
+  useEffect(() => {
+    image && setAddNew(true);
+  }, [image]);
   interface IRProp {
     item: any;
     index: any;
@@ -184,7 +201,7 @@ export default ({navigation}: IProp) => {
   Keyboard.addListener('keyboardDidShow', hideEmoji);
 
   return (
-    <React.Fragment>
+    <View style={{flex: 1}}>
       <View
         style={{
           width: '100%',
@@ -270,9 +287,131 @@ export default ({navigation}: IProp) => {
             appearance="outline"
             status="control"
             accessoryLeft={props => <Icon {...props} name="plus-outline" />}
-            onPress={() => setThoughtModal(false)}></Button>
+            onPress={() =>
+              launchImageLibrary({mediaType: 'photo'}, (response: any) => {
+                console.log('Response = ', response);
+                if (response.didCancel) {
+                  console.log('User cancelled image picker');
+                } else if (response.error) {
+                  console.log('ImagePicker Error: ', response.error);
+                } else if (response.customButton) {
+                  console.log(
+                    'User tapped custom button: ',
+                    response.customButton,
+                  );
+                } else if (response.assets.length) {
+                  setImage(response.assets[0]);
+                  console.log(response.uri);
+                }
+              })
+            }></Button>
         </View>
       </View>
-    </React.Fragment>
+      {/* <Modal
+        visible={addNew}
+        backdropStyle={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'white',
+          position: 'absolute',
+          padding: 0,
+          top: 0,
+          zIndex: 2,
+        }}
+        // onBackdropPress={() => setVisible(false)}
+      > */}
+      {addNew && (
+        <ScrollView
+          style={{
+            position: 'absolute',
+            width: '100%',
+            left: 0,
+            top: 0,
+            height: '100%',
+            backgroundColor: 'white',
+            borderWidth: 0,
+            paddingTop: 0,
+            marginTop: 0,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+                margin: 15,
+              }}>
+              <Image
+                style={{width: 50, height: 50, borderRadius: 25}}
+                source={{
+                  uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
+                }}></Image>
+              <View>
+                <Text style={{fontWeight: 'bold', marginLeft: 10}}>
+                  Adam Lee
+                </Text>
+              </View>
+            </View>
+            <Button
+              appearance="outline"
+              // accessoryLeft={props => <Icon {...props} name="edit-outline" />}
+              style={{
+                height: 50,
+                borderRadius: 30,
+
+                marginRight: 10,
+                marginLeft: 10,
+                zIndex: 10,
+              }}
+              onPress={() => setAddNew(false)}>
+              create
+            </Button>
+          </View>
+          <Input
+            multiline
+            textStyle={{
+              width: '100%',
+            }}
+            style={{width: '100%', borderWidth: 0, backgroundColor: 'white'}}
+            placeholder={'say something about the image...'}></Input>
+
+          <Image
+            source={{
+              uri: image?.uri || '',
+            }}
+            style={{
+              marginTop: 10,
+              width: Dimensions.get('window').width,
+              height:
+                (Dimensions.get('window').width * image.height) / image.width,
+              resizeMode: 'cover',
+              zIndex: 2,
+            }}></Image>
+        </ScrollView>
+      )}
+      {/* </Modal> */}
+      {addNew && (
+        <Button
+          style={{
+            position: 'absolute',
+            left: Dimensions.get('window').width / 2 - 25,
+            bottom: 50,
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            // borderWidth: 0,
+            zIndex: 10,
+          }}
+          appearance="outline"
+          accessoryLeft={props => <Icon {...props} name="close-outline" />}
+          onPress={() => setAddNew(false)}></Button>
+      )}
+    </View>
   );
 };
