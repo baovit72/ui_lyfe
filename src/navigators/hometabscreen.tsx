@@ -62,7 +62,7 @@ export default () => {
   return (
     <HomeTabs.Navigator
       lazy={false}
-      initialRouteName="Diary"
+      initialRouteName="Profile"
       // barStyle={{backgroundColor: 'white'}}
       tabBarOptions={{
         keyboardHidesTabBar: true,

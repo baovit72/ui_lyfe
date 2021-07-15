@@ -102,7 +102,8 @@ export default {
           },
         ],
       )
-        .then(res => console.log('res', res))
+        .then(res => res.json())
+        .then(res => res.data)
         .catch(e => console.log(e));
     }),
 };

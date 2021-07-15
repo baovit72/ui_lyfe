@@ -89,6 +89,7 @@ export default ({navigation}: IProp) => {
   const theme = useTheme();
 
   const {state, dispatch} = useContext(GlobalContext);
+
   const updateAvatar = () => {
     ImagePicker.openPicker({
       width: 500,
@@ -163,7 +164,7 @@ export default ({navigation}: IProp) => {
                   borderColor: 'white',
                 }}
                 source={{
-                  uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
+                  uri: state.user.avatar,
                 }}
               />
               <Button
@@ -303,7 +304,7 @@ export default ({navigation}: IProp) => {
                   marginBottom: 20,
                   color: theme['color-primary-400'],
                 }}>
-                Setting
+                System
               </Text>
               <View
                 style={{
@@ -315,6 +316,20 @@ export default ({navigation}: IProp) => {
                   Dark Mode
                 </Text>
                 <Toggle></Toggle>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 7,
+                }}>
+                <Button
+                  onPress={() => dispatch({type: 'LOG_OUT'})}
+                  size="large"
+                  status="danger"
+                  appearance="ghost">
+                  Log out
+                </Button>
               </View>
             </Card>
           </ScrollView>

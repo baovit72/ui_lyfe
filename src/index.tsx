@@ -33,6 +33,9 @@ export default () => {
         return {...state, spinner: false};
       case 'FIRST_LOAD_DONE':
         return {...state, firstLoad: false};
+      case 'LOG_OUT':
+        AsyncStorage.removeItem('token');
+        return {...state, user: null, token: null};
       default:
         return {...state};
     }
@@ -43,6 +46,7 @@ export default () => {
     spinner: false,
     firstLoad: true,
     group: null,
+    darkmode: false,
   });
   useEffect(async () => {
     const token = await AsyncStorage.getItem('token');
