@@ -6,9 +6,11 @@ import {
   BottomNavigation,
   BottomNavigationTab,
   Icon,
+  useTheme,
 } from '@ui-kitten/components';
 import ForgotStackScreen from './forgotstackscreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import EmotjShare from '../screens/emotjshare';
 import DiaryScreen from '../screens/diary';
@@ -25,7 +27,7 @@ const ImageIcon = (props: any) => <Icon {...props} name="image-outline" />;
 
 const PersonIcon = (props: any) => <Icon {...props} name="person-outline" />;
 
-const HomeTabs = createBottomTabNavigator();
+const HomeTabs = createMaterialBottomTabNavigator();
 interface IProp {
   navigation: any;
   state: any;
@@ -47,17 +49,58 @@ const BottomTabBar = ({navigation, state}: IProp) => (
     <BottomNavigationTab icon={PersonIcon} />
   </BottomNavigation>
 );
-export default () => (
-  <HomeTabs.Navigator
-    initialRouteName="Diary"
-    tabBarOptions={{
-      keyboardHidesTabBar: true,
-      style: {position: 'absolute'},
-    }}
-    tabBar={props => <BottomTabBar {...props} />}>
-    <HomeTabs.Screen name="Home" component={EmotjShare} />
-    <HomeTabs.Screen name="Chat" component={ChatRoom} />
-    <HomeTabs.Screen name="Diary" component={DiaryScreen} />
-    <HomeTabs.Screen name="Profile" component={Profile} />
-  </HomeTabs.Navigator>
-);
+export default () => {
+  const theme = useTheme();
+
+  return (
+    <HomeTabs.Navigator
+      // shifting
+      inactiveColor={theme['color-primary-400']}
+      activeColor={theme['color-primary-400']}
+      initialRouteName="Diary"
+      // barStyle={{backgroundColor: 'white'}}
+      tabBarOptions={{
+        keyboardHidesTabBar: true,
+        style: {position: 'absolute'},
+      }}
+      // tabBar={props => <BottomTabBar {...props} />}
+    >
+      <HomeTabs.Screen
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
+          tabBarAccessibilityLabel: 'Home',
+        }}
+        name="Home"
+        component={EmotjShare}
+      />
+      <HomeTabs.Screen
+        options={{
+          tabBarLabel: 'dsdsd',
+          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
+          tabBarAccessibilityLabel: 'Home',
+        }}
+        name="Chat"
+        component={ChatRoom}
+      />
+      <HomeTabs.Screen
+        options={{
+          tabBarLabel: 'dsdsd',
+          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
+          tabBarAccessibilityLabel: 'Home',
+        }}
+        name="Diary"
+        component={DiaryScreen}
+      />
+      <HomeTabs.Screen
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => <Icon name="edit-outline"></Icon>,
+          tabBarAccessibilityLabel: 'Home',
+        }}
+        name="Profile"
+        component={Profile}
+      />
+    </HomeTabs.Navigator>
+  );
+};

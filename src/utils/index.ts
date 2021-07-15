@@ -1,8 +1,8 @@
 var validator = require('validator');
 import axios from 'axios';
 
-const REST_DOMAIN = 'http://8434054cb299.ngrok.io/rest/';
-const GRAPH_DOMAIN = 'http://8434054cb299.ngrok.io/graphql';
+const REST_DOMAIN = 'http://4aa625d7d035.ngrok.io/rest/';
+const GRAPH_DOMAIN = 'http://4aa625d7d035.ngrok.io/graphql';
 export default {
   isValidPassword: (password: string) => password.length >= 8,
   isValidUsername: (username: string) => username.length > 0,
