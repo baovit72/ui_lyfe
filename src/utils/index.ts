@@ -74,24 +74,35 @@ export default {
         .catch(e => reject(e)),
     );
   },
-  getImageBase64: uri => {
-    const fs = RNFetchBlob.fs;
-    let imagePath = '';
-    RNFetchBlob.config({
-      fileCache: true,
-    })
-      .fetch('GET', 'http://www.example.com/image.png')
-      // the image is now dowloaded to device's storage
-      .then(resp => {
-        // the image path you can use it directly with Image component
-        imagePath = resp.path();
-        return resp.readFile('base64');
-      })
-      .then(base64Data => {
-        // here's base64 encoded image
-        console.log(base64Data);
-        // remove the file from storage
-        return fs.unlink(imagePath);
-      });
-  },
+  getImageBase64: (token, uri) =>
+    new Promise((resolve, reject) => {
+      // const fs = RNFetchBlob.fs;
+      // RNFetchBlob.fs
+      //   .readFile(uri, 'base64')
+      //   .then(data => {
+      //     console.log(data);
+      //     resolve(data);
+      //   })
+      //   .catch(e => reject(e));
+      console.log('fetch');
+      RNFetchBlob.fetch(
+        'POST',
+        REST_DOMAIN + 'image',
+        {
+          Authorization: 'Bearer ' + token,
+          Accept: 'application/json',
+          ContentType: 'multipart/form-data',
+        },
+        [
+          {
+            name: 'image',
+            filename: 'image.png',
+            type: 'image/png',
+            data: RNFetchBlob.wrap(uri),
+          },
+        ],
+      )
+        .then(res => console.log('res', res))
+        .catch(e => console.log(e));
+    }),
 };

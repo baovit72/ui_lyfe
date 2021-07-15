@@ -23,12 +23,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {GiftedChat, Bubble, InputToolbar} from 'react-native-gifted-chat';
 
-import EMOJIS from '../../assets/emojis';
-import EmojiBoard from 'react-native-emoji-board';
-import Carousel from 'react-native-snap-carousel';
+const {getImageBase64} = require('../utils').default;
+
+import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
+import {useContext} from 'react';
+import GlobalContext from '../contexts/global.context';
 
 /**
  * Stylesheet for the component
@@ -86,6 +87,20 @@ export default ({navigation}: IProp) => {
   const emojiState = useChatRoomState(false);
   const chatState = useChatRoomState('');
   const theme = useTheme();
+
+  const {state, dispatch} = useContext(GlobalContext);
+  const updateAvatar = () => {
+    ImagePicker.openPicker({
+      width: 500,
+      height: 500,
+      cropping: true,
+    }).then(image => {
+      console.log('image', image);
+      getImageBase64(state.token, image.path)
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+    });
+  };
   interface IRProp {
     item: any;
     index: any;
@@ -128,7 +143,7 @@ export default ({navigation}: IProp) => {
               justifyContent: 'flex-start',
               alignContent: 'center',
             }}>
-            <Image
+            <TouchableOpacity
               style={{
                 width: 110,
                 height: 110,
@@ -138,10 +153,37 @@ export default ({navigation}: IProp) => {
                 position: 'absolute',
                 bottom: -35,
               }}
-              source={{
-                uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
-              }}
-            />
+              onPress={updateAvatar}>
+              <Image
+                style={{
+                  width: '100%',
+                  height: '100%',
+
+                  borderRadius: 55,
+                  borderColor: 'white',
+                }}
+                source={{
+                  uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
+                }}
+              />
+              <Button
+                onPress={updateAvatar}
+                size="small"
+                style={{
+                  position: 'absolute',
+                  width: 30,
+                  height: 30,
+                  backgroundColor: 'white',
+                  borderRadius: 30,
+                  right: -5,
+                  bottom: -5,
+                  zIndex: 10,
+                }}
+                appearance="outline"
+                accessoryRight={props => (
+                  <Icon {...props} size="small" name="camera-outline"></Icon>
+                )}></Button>
+            </TouchableOpacity>
           </View>
         </View>
         <View
