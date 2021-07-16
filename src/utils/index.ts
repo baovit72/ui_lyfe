@@ -1,5 +1,6 @@
 var validator = require('validator');
 import axios from 'axios';
+import {Alert} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
 const REST_DOMAIN = 'http://10.0.2.2:2021/rest/';
@@ -74,6 +75,19 @@ export default {
         .catch(e => reject(e)),
     );
   },
+  leaveGroup: token => {
+    const query = `mutation{leaveGroup{code, createdAt}}`;
+    return new Promise((resolve, reject) =>
+      axios
+        .post(
+          GRAPH_DOMAIN,
+          {query},
+          {headers: {Authorization: 'Bearer ' + token}},
+        )
+        .then(data => resolve(data.data))
+        .catch(e => reject(e)),
+    );
+  },
   getImageBase64: (token, uri) =>
     new Promise((resolve, reject) => {
       // const fs = RNFetchBlob.fs;
@@ -106,4 +120,21 @@ export default {
         .then(res => res.data)
         .catch(e => console.log(e));
     }),
+
+  showConfirmDialog: (cb, title, content, mainBtn) => {
+    return Alert.alert(title, content, [
+      {
+        text: mainBtn,
+        onPress: () => {
+          cb();
+        },
+      },
+      {
+        text: 'Cancel',
+      },
+    ]);
+  },
+  showInput: (title, cb) => {
+    Alert.prompt(title, undefined, cb);
+  },
 };

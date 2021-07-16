@@ -94,11 +94,12 @@ const getState = (defValue: any) => {
 
 export default ({navigation}: IProp) => {
   const {state, dispatch} = useContext(GlobalContext);
-  useEffect(() => {
-    if (state.group) {
-      navigation.push('HomeTab');
-    }
-  }, [state.group]);
+  if (state.group) navigation.push('HomeTab');
+  if (state.group) return null;
+  // useEffect(() => {
+  //   if (state.group) {
+  //   }
+  // }, [state.group]);
   const code = getState('');
 
   const onCreateGroup = () => {

@@ -108,7 +108,7 @@ export default ({navigation}: IProp) => {
           dispatch({type: 'LOAD_END'});
           dispatch({
             type: 'AUTHENTICATE',
-            payload: {token: data.token, user: data.user},
+            payload: {token: data.token, user: data.user, group: data.group},
           });
         })
         .catch(e => {

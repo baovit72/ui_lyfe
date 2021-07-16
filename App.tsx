@@ -1,4 +1,7 @@
 import React from 'react';
+
+import ThemeContext from './src/contexts/theme.context';
+
 import {ImageProps, StyleSheet} from 'react-native';
 import {
   ApplicationProvider,
@@ -18,28 +21,20 @@ const theme = require('./assets/theme.json');
 //   props?: Partial<ImageProps>,
 // ): React.ReactElement<ImageProps> => <Icon {...props} name="heart" />;
 
-export default (): React.ReactFragment => (
-  <>
-    <IconRegistry icons={EvaIconsPack} />
-    <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
-      {/* <Layout style={styles.container}>
-        <Text style={styles.text} category="h1">
-          Welcome to UI Kitten 😻
-        </Text>
-        <Text style={styles.text} category="s1">
-          Start with editing App.js to configure your App
-        </Text>
-        <Text style={styles.text} appearance="hint">
-          For example, try changing theme to Dark by using eva.dark
-        </Text>
-        <Button style={styles.likeButton} accessoryLeft={HeartIcon}>
-          LIKE
-        </Button>
-      </Layout> */}
-      <Entry />
-    </ApplicationProvider>
-  </>
-);
+export default (): React.ReactFragment => {
+  const [themeMode, setThemeMode] = React.useState('light');
+
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ThemeContext.Provider value={{themeMode, setThemeMode}}>
+        <ApplicationProvider {...eva} theme={{...eva[themeMode], ...theme}}>
+          <Entry />
+        </ApplicationProvider>
+      </ThemeContext.Provider>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -8,6 +8,7 @@ import {AsyncStorage, View} from 'react-native';
 import {useTheme} from '@ui-kitten/components';
 const {sendValidate} = require('./utils').default;
 import Toast from 'react-native-toast-message';
+import ThemeContext from './contexts/theme.context';
 
 interface IAction {
   type: string;
@@ -15,27 +16,34 @@ interface IAction {
 }
 export default () => {
   const theme = useTheme();
+
+  const {themeMode, setThemeMode} = useContext(ThemeContext);
+
   const reducer = (state: any, action: IAction): any => {
     console.log(action);
     const {type, payload} = action;
+    console.log('state', state, 'action', action);
     switch (type) {
       case 'AUTHENTICATE':
-        const {user, token} = payload;
+        const {user, token, group} = payload;
         AsyncStorage.setItem('token', token);
         console.log('authenticate', token);
-        return {...state, user, token};
+        return {...state, user, token, group};
       case 'JOIN_GROUP':
-        const {group} = payload;
-        return {...state, group};
+        return {...state, group: payload.group};
       case 'LOAD_BEGIN':
         return {...state, spinner: true};
       case 'LOAD_END':
         return {...state, spinner: false};
       case 'FIRST_LOAD_DONE':
         return {...state, firstLoad: false};
+      case 'DIARY_DECK_TOGGLE':
+        return {...state, diaryDeck: !state.diaryDeck};
+      case 'LEAVE_GROUP':
+        return {...state, group: null};
       case 'LOG_OUT':
         AsyncStorage.removeItem('token');
-        return {...state, user: null, token: null};
+        return {...state, user: null, token: null, group: null};
       default:
         return {...state};
     }
@@ -46,8 +54,23 @@ export default () => {
     spinner: false,
     firstLoad: true,
     group: null,
-    darkmode: false,
+    theme: 'light',
+    diaryDeck: false,
   });
+
+  useEffect(async () => {
+    const diaryDeck = await AsyncStorage.getItem('diaryDeck');
+    if (diaryDeck) {
+      dispatch({type: 'DIARY_DECK_TOGGLE'});
+    }
+  }, []);
+
+  useEffect(async () => {
+    const themeMode = await AsyncStorage.getItem('themeMode');
+    if (themeMode) {
+      setThemeMode(themeMode);
+    }
+  }, []);
   useEffect(async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
@@ -57,7 +80,7 @@ export default () => {
           console.log('set token', token);
           dispatch({
             type: 'AUTHENTICATE',
-            payload: {token: token, user: data.user},
+            payload: {token: token, user: data.user, group: data.group},
           });
           dispatch({type: 'FIRST_LOAD_DONE', payload: {}});
           dispatch({type: 'LOAD_END', payload: {}});

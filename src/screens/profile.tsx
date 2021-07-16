@@ -12,12 +12,15 @@ import {
   useTheme,
   Modal,
   Toggle,
+  Datepicker,
 } from '@ui-kitten/components';
 import {
+  AsyncStorage,
   Dimensions,
   FlatList,
   Image,
   ImageBackground,
+  LogBox,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -30,6 +33,9 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
 import {useContext} from 'react';
 import GlobalContext from '../contexts/global.context';
+const {showConfirmDialog, leaveGroup} = require('../utils').default;
+import ThemeContext from '../contexts/theme.context';
+import Toast from 'react-native-toast-message';
 
 /**
  * Stylesheet for the component
@@ -69,7 +75,11 @@ interface IProp {
   navigation: any;
 }
 
-const editIcon = (props: any) => <Icon {...props} name="edit-outline" />;
+const editIcon = (props: any) => (
+  <TouchableOpacity {...props} style={{margin: 0}} appearance="ghost">
+    <Icon {...props} name="edit-outline" />
+  </TouchableOpacity>
+);
 const attachmentIcon = (props: any) => (
   <Icon {...props} name="attach-outline" />
 );
@@ -87,7 +97,7 @@ export default ({navigation}: IProp) => {
   const emojiState = useChatRoomState(false);
   const chatState = useChatRoomState('');
   const theme = useTheme();
-
+  const {themeMode, setThemeMode} = useContext(ThemeContext);
   const {state, dispatch} = useContext(GlobalContext);
 
   const updateAvatar = () => {
@@ -102,19 +112,39 @@ export default ({navigation}: IProp) => {
         .catch(error => console.log(error));
     });
   };
-  interface IRProp {
-    item: any;
-    index: any;
-  }
-  function onSend(messages: any) {
-    console.log(messages);
-  }
 
-  function hideEmoji() {
-    emojiState.setValue(false);
-  }
-
-  Keyboard.addListener('keyboardDidShow', hideEmoji);
+  const user = state.user;
+  const group = state.group;
+  console.log('group', group);
+  LogBox.ignoreAllLogs();
+  console.ignoredYellowBox = true;
+  const onLeaveGroup = () => {
+    console.log('leave group ');
+    dispatch({type: 'LOAD_BEGIN'});
+    console.log(state);
+    leaveGroup(state.token, group.code)
+      .then((data: any) => {
+        dispatch({type: 'LOAD_END'});
+        console.log(data.data);
+        dispatch({
+          type: 'LEAVE_GROUP',
+          payload: {},
+        });
+        Toast.show({
+          type: 'success',
+          text1: 'Your have left the group!',
+        });
+        navigation.push('Group');
+      })
+      .catch(e => {
+        Toast.show({
+          type: 'error',
+          text1: 'Oops! Please check your internet connection',
+        });
+        console.log(e);
+        dispatch({type: 'LOAD_END'});
+      });
+  };
 
   return (
     <React.Fragment>
@@ -164,7 +194,7 @@ export default ({navigation}: IProp) => {
                   borderColor: 'white',
                 }}
                 source={{
-                  uri: state.user.avatar,
+                  uri: user.avatar,
                 }}
               />
               <Button
@@ -223,7 +253,7 @@ export default ({navigation}: IProp) => {
                 </Text>
                 <Input
                   style={{flex: 2}}
-                  value="Adam Lee"
+                  value={user.name}
                   disabled
                   accessoryRight={editIcon}></Input>
               </View>
@@ -236,7 +266,7 @@ export default ({navigation}: IProp) => {
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Username
                 </Text>
-                <Input style={{flex: 2}} value="adamlee123" disabled></Input>
+                <Input style={{flex: 2}} value={user.username} disabled></Input>
               </View>
               <View
                 style={{
@@ -247,10 +277,7 @@ export default ({navigation}: IProp) => {
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Email
                 </Text>
-                <Input
-                  style={{flex: 2}}
-                  value="nguyenbaont2212@gmail.com"
-                  disabled></Input>
+                <Input style={{flex: 2}} value={user.email} disabled></Input>
               </View>
               <View
                 style={{
@@ -263,24 +290,10 @@ export default ({navigation}: IProp) => {
                 </Text>
                 <Input
                   style={{flex: 2}}
-                  value="0855765343"
+                  value={user.phone}
                   disabled
                   accessoryRight={editIcon}></Input>
               </View>
-            </Card>
-            <Card
-              style={{
-                marginTop: 10,
-              }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  fontWeight: 'bold',
-                  marginBottom: 20,
-                  color: theme['color-primary-400'],
-                }}>
-                Group
-              </Text>
               <View
                 style={{
                   flexDirection: 'row',
@@ -288,9 +301,101 @@ export default ({navigation}: IProp) => {
                   marginBottom: 7,
                 }}>
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
-                  Leave group
+                  Birthday
                 </Text>
-                <Toggle></Toggle>
+                <Datepicker
+                  accessoryRight={props => <Icon {...props} name="calendar" />}
+                  style={{flex: 2}}
+                  date={new Date(user.birthday || new Date().toString())}
+                  onSelect={nextDate => setDate(nextDate)}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 7,
+                }}>
+                <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
+                  Password
+                </Text>
+                <Button
+                  size="small"
+                  style={{flex: 2, marginLeft: 18}}
+                  appearance="outline"
+                  status="warning">
+                  Change
+                </Button>
+              </View>
+            </Card>
+            <Card
+              style={{
+                marginTop: 10,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: 7,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: theme['color-primary-400'],
+                  }}>
+                  Group
+                </Text>
+                <TouchableOpacity onPress={onLeaveGroup}>
+                  <Text
+                    onPress={() =>
+                      showConfirmDialog(
+                        onLeaveGroup,
+                        'Leave group',
+                        'Are you sure to leave your group?',
+                        'Leave',
+                      )
+                    }
+                    status="danger"
+                    appearance="ghost"
+                    style={{
+                      flex: 1,
+                      fontWeight: 'bold',
+                      padding: 5,
+                    }}>
+                    Leave group
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 7,
+                }}>
+                <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
+                  Code
+                </Text>
+                <Input style={{flex: 2}} value={group?.code} disabled></Input>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 7,
+                }}>
+                <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
+                  Start on
+                </Text>
+                {/* <Datepicker
+                  accessoryRight={props => <Icon {...props} name="calendar" />}
+                  style={{flex: 2}}
+                  date={new Date(group.createdAt)}
+                  onSelect={nextDate => setDate(nextDate)}
+                /> */}
               </View>
             </Card>
             <Card
@@ -310,12 +415,36 @@ export default ({navigation}: IProp) => {
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  marginBottom: 7,
+                  marginBottom: 10,
                 }}>
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Dark Mode
                 </Text>
-                <Toggle></Toggle>
+                <Toggle
+                  checked={themeMode === 'dark'}
+                  onChange={() => {
+                    console.log('onChange');
+                    const nextThemeMode =
+                      themeMode === 'dark' ? 'light' : 'dark';
+                    setThemeMode(nextThemeMode);
+                    AsyncStorage.setItem('themeMode', nextThemeMode);
+                  }}></Toggle>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 7,
+                }}>
+                <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
+                  Diary Deck
+                </Text>
+                <Toggle
+                  checked={state.diaryDeck}
+                  onChange={() => {
+                    AsyncStorage.setItem('diaryDeck', !state.diaryDeck);
+                    dispatch({type: 'DIARY_DECK_TOGGLE'});
+                  }}></Toggle>
               </View>
               <View
                 style={{
@@ -324,10 +453,21 @@ export default ({navigation}: IProp) => {
                   marginBottom: 7,
                 }}>
                 <Button
-                  onPress={() => dispatch({type: 'LOG_OUT'})}
+                  onPress={() =>
+                    showConfirmDialog(
+                      () => dispatch({type: 'LOG_OUT'}),
+                      'Log out',
+                      'You will be returned to the login screen.',
+                      'Log out',
+                    )
+                  }
+                  style={{
+                    width: '100%',
+                    marginTop: 30,
+                  }}
                   size="large"
                   status="danger"
-                  appearance="ghost">
+                  appearance="outline">
                   Log out
                 </Button>
               </View>
