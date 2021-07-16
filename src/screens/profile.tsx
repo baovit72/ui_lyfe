@@ -126,15 +126,56 @@ export default ({navigation}: IProp) => {
       .then((data: any) => {
         dispatch({type: 'LOAD_END'});
         console.log(data.data);
-        dispatch({
-          type: 'LEAVE_GROUP',
-          payload: {},
-        });
+        if (data.errors) {
+          Toast.show({
+            type: 'error',
+            text1: 'You are not in a group',
+          });
+        } else {
+          dispatch({
+            type: 'LEAVE_GROUP',
+            payload: {},
+          });
+          Toast.show({
+            type: 'success',
+            text1: 'Your have left the group!',
+          });
+          navigation.push('Group');
+        }
+      })
+      .catch(e => {
         Toast.show({
-          type: 'success',
-          text1: 'Your have left the group!',
+          type: 'error',
+          text1: 'Oops! Please check your internet connection',
         });
-        navigation.push('Group');
+        console.log(e);
+        dispatch({type: 'LOAD_END'});
+      });
+  };
+  const onGroupDateChange = date => {
+    console.log('change group date');
+    dispatch({type: 'LOAD_BEGIN'});
+    console.log(state);
+    updateGroup(state.token, date)
+      .then((data: any) => {
+        dispatch({type: 'LOAD_END'});
+        console.log(data.data);
+        if (data.errors) {
+          Toast.show({
+            type: 'error',
+            text1: 'You are not in a group',
+          });
+        } else {
+          dispatch({
+            type: 'UPDATE_GROUP',
+            payload: {group: {createdAt: date}},
+          });
+          Toast.show({
+            type: 'success',
+            text1: 'Your have left the group!',
+          });
+          navigation.push('Group');
+        }
       })
       .catch(e => {
         Toast.show({
@@ -390,12 +431,12 @@ export default ({navigation}: IProp) => {
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Start on
                 </Text>
-                {/* <Datepicker
+                <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
                   date={new Date(group.createdAt)}
-                  onSelect={nextDate => setDate(nextDate)}
-                /> */}
+                  onSelect={onGroupDateChange}
+                />
               </View>
             </Card>
             <Card

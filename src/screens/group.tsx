@@ -109,14 +109,21 @@ export default ({navigation}: IProp) => {
       .then((data: any) => {
         dispatch({type: 'LOAD_END'});
         console.log(data.data);
-        dispatch({
-          type: 'JOIN_GROUP',
-          payload: {group: data.data},
-        });
-        Toast.show({
-          type: 'success',
-          text1: 'Your group has been created successfully!',
-        });
+        if (data.errors) {
+          Toast.show({
+            type: 'error',
+            text1: 'You are already in a group',
+          });
+        } else {
+          dispatch({
+            type: 'JOIN_GROUP',
+            payload: {group: data.data.createGroup},
+          });
+          Toast.show({
+            type: 'success',
+            text1: 'Your group has been created successfully!',
+          });
+        }
       })
       .catch(e => {
         Toast.show({

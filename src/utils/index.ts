@@ -50,7 +50,8 @@ export default {
         .catch(e => reject(e)),
     ),
   createGroup: token => {
-    const query = 'mutation{createGroup(group:{name:"Genesis Group"}){code}}';
+    const query =
+      'mutation{createGroup(group:{name:"Genesis Group"}){code, createdAt}}';
     return new Promise((resolve, reject) =>
       axios
         .post(
@@ -88,6 +89,19 @@ export default {
         .catch(e => reject(e)),
     );
   },
+  updateGroup: (token, date) =>{
+    const query = `mutation{updateGroup(group: {createdAt: "${date.toDateString()}"}){createdAt}}`;
+    return new Promise((resolve, reject) =>
+      axios
+        .post(
+          GRAPH_DOMAIN,
+          {query},
+          {headers: {Authorization: 'Bearer ' + token}},
+        )
+        .then(data => resolve(data.data))
+        .catch(e => reject(e)),
+    );
+  }
   getImageBase64: (token, uri) =>
     new Promise((resolve, reject) => {
       // const fs = RNFetchBlob.fs;
