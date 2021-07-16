@@ -125,82 +125,113 @@ export default ({navigation}: IProp) => {
   function hideEmoji() {
     emojiState.setValue(false);
   }
-  const _renderItem = data => (
-    <View
-      style={{
-        // width: Dimensions.get('window').width * 0.9,
-        borderRadius: 30,
-        padding: 0,
-        marginLeft: 20,
-        marginRight: 20,
-        overflow: 'hidden',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        borderWidth: 1,
-        borderColor: theme['color-primary-400'],
-        height: Dimensions.get('window').width * 0.9,
-        // elevation: 5,
-        // height: Dimensions.get('window').width / 0.9,
-      }}>
-      <Lightbox
-        activeProps={{
-          style: {
-            flex: 1,
-            resizeMode: 'contain',
+  const _renderItem = ({item}) => {
+    return (
+      <View
+        style={{
+          // width: Dimensions.get('window').width * 0.9,
+          borderRadius: 30,
+          padding: 0,
+          marginLeft: 20,
+          marginRight: 20,
+          overflow: 'hidden',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
           },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          borderWidth: 1,
+          borderColor: theme['color-primary-400'],
+          height: Dimensions.get('window').width * 0.8,
+          // elevation: 5,
+          // height: Dimensions.get('window').width / 0.9,
         }}>
-        <Image
-          style={{
-            margin: 0,
-            width: '100%',
-            height: Dimensions.get('window').width * 0.5,
-            resizeMode: 'cover',
-          }}
-          source={{
-            uri: 'https://images.unsplash.com/photo-1623920483953-e0e9b7e64600?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-          }}
-        />
-      </Lightbox>
-      <View style={{padding: 30, paddingTop: 10, backgroundColor: 'white'}}>
-        <View style={{flexDirection: 'row'}}>
-          <View
+        <View style={{position: 'absolute', right: 10, top: 10, zIndex: 5}}>
+          <Button
+            size="small"
+            style={{borderRadius: 100, marginBottom: 5}}
+            appearance="outline"
+            status="control"
+            accessoryLeft={props => (
+              <Icon {...props} name="download-outline"></Icon>
+            )}></Button>
+          <Button
+            size="small"
+            style={{borderRadius: 100, marginBottom: 5}}
+            appearance="outline"
+            status="control"
+            accessoryLeft={props => (
+              <Icon {...props} name="share-outline"></Icon>
+            )}></Button>
+          <Button
+            size="small"
+            style={{borderRadius: 100, marginBottom: 5}}
+            appearance="outline"
+            status="control"
+            accessoryLeft={props => (
+              <Icon {...props} name="message-circle-outline"></Icon>
+            )}></Button>
+
+          <Button
+            size="small"
+            style={{borderRadius: 100, marginBottom: 5}}
+            appearance="outline"
+            status="danger"
+            accessoryLeft={props => (
+              <Icon {...props} name="trash-outline"></Icon>
+            )}></Button>
+        </View>
+        <Lightbox
+          activeProps={{
+            style: {
+              flex: 1,
+              resizeMode: 'contain',
+            },
+          }}>
+          <Image
             style={{
-              flexDirection: 'row',
-              // justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Image
-              style={{width: 30, height: 30, borderRadius: 15}}
-              source={{
-                uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
-              }}></Image>
-            <View>
-              <Text style={{fontWeight: 'bold', marginLeft: 10}}>Adam Lee</Text>
-              <Text style={{marginLeft: 10, color: 'gray'}}>
-                {timeAgo.format(new Date())}
-              </Text>
+              margin: 0,
+              width: '100%',
+              height: Dimensions.get('window').width * 0.4,
+              resizeMode: 'cover',
+            }}
+            source={{
+              uri: item.url,
+            }}
+          />
+        </Lightbox>
+        <View style={{padding: 30, paddingTop: 10, backgroundColor: 'white'}}>
+          <View style={{flexDirection: 'row'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                // justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                style={{width: 30, height: 30, borderRadius: 15}}
+                source={{
+                  uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
+                }}></Image>
+              <View>
+                <Text style={{fontWeight: 'bold', marginLeft: 10}}>Bao Ho</Text>
+                <Text style={{marginLeft: 10, color: 'gray'}}>
+                  {timeAgo.format(new Date())}
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
 
-        <Text style={{color: 'black', marginTop: 10, fontStyle: 'italic'}}>
-          {'\t'}Lorem ipsum dolor sit amet consectetur adipisicing elit. Non vel
-          harum, distinctio alias nisi architecto ea eum dolorum at sit,
-        </Text>
+          <Text style={{color: 'black', marginTop: 10, fontStyle: 'italic'}}>
+            {'\t'}
+            {item.description}
+          </Text>
+        </View>
       </View>
-      <Button
-        style={{position: 'absolute', right: -5, bottom: 5}}
-        appearance="ghost"
-        accessoryLeft={props => (
-          <Icon {...props} name="trash-outline"></Icon>
-        )}></Button>
-    </View>
-  );
+    );
+  };
   Keyboard.addListener('keyboardDidShow', hideEmoji);
 
   return (
@@ -251,29 +282,45 @@ export default ({navigation}: IProp) => {
         <View
           style={{
             flex: 22,
-            paddingTop: 20,
+            paddingTop: 40,
+            paddingLeft: 10,
+            paddingRight: 10,
           }}>
           <Carousel
             data={[
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-              'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+              {
+                url: 'https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/08/watermelon.jpg',
+                description: 'Watermelon for summer',
+              },
+              {
+                url: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+                description: 'Anyone wants a puppy?',
+              },
+              {
+                url: 'https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/08/watermelon.jpg',
+                description: 'Watermelon for summer',
+              },
+              {
+                url: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+                description: 'Anyone wants a puppy?',
+              },
+              {
+                url: 'https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/08/watermelon.jpg',
+                description: 'Watermelon for summer',
+              },
+              {
+                url: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
+                description: 'Anyone wants a puppy?',
+              },
             ]}
             vertical
             // layoutCardOffset={`18`}
             // layout="tinder"
             renderItem={_renderItem}
-            sliderWidth={Dimensions.get('window').width * 0.9}
-            itemWidth={Dimensions.get('window').width * 0.9}
-            itemHeight={Dimensions.get('window').width * 0.9}
-            sliderHeight={Dimensions.get('window').width * 0.9}
+            sliderWidth={Dimensions.get('window').width * 0.8}
+            itemWidth={Dimensions.get('window').width * 0.8}
+            itemHeight={Dimensions.get('window').width * 0.8}
+            sliderHeight={Dimensions.get('window').width * 0.8}
           />
 
           <Button
@@ -365,9 +412,7 @@ export default ({navigation}: IProp) => {
                   uri: 'https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png',
                 }}></Image>
               <View>
-                <Text style={{fontWeight: 'bold', marginLeft: 10}}>
-                  Adam Lee
-                </Text>
+                <Text style={{fontWeight: 'bold', marginLeft: 10}}>Bao Ho</Text>
               </View>
             </View>
             <Button

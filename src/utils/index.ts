@@ -4,8 +4,8 @@ import {Alert} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import prompt from 'react-native-prompt-android';
 
-const REST_DOMAIN = 'http://5c67b6a9bb0c.ngrok.io/rest/';
-const GRAPH_DOMAIN = 'http://5c67b6a9bb0c.ngrok.io/graphql';
+const REST_DOMAIN = 'http://10.0.2.2:2021/rest/';
+const GRAPH_DOMAIN = 'http://10.0.2.2:2021/graphql';
 export default {
   isValidPassword: (password: string) => password.length >= 8,
   isValidUsername: (username: string) => username.length > 0,

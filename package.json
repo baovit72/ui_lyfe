@@ -27,6 +27,7 @@
     "@ui-kitten/eva-icons": "^5.1.0",
     "@ui-kitten/metro-config": "^5.1.0",
     "add": "^2.0.6",
+    "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",

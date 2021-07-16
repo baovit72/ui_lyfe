@@ -64,7 +64,7 @@ export default () => {
   return (
     <HomeTabs.Navigator
       lazy={false}
-      initialRouteName="Profile"
+      initialRouteName="Diary"
       // barStyle={{backgroundColor: 'white'}}
       tabBarOptions={{
         keyboardHidesTabBar: true,
@@ -78,7 +78,7 @@ export default () => {
         options={{
           tabBarIcon: ({focused, color, size}) => (
             <Icon
-              name="share-2"
+              name="globe"
               size={size ? size : 24}
               color={focused ? color : '#222222'}
               focused={focused}

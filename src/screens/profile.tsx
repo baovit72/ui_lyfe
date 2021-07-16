@@ -496,6 +496,8 @@ export default ({navigation}: IProp) => {
                   Start on
                 </Text>
                 <Datepicker
+                  min={Date.parse('01/01/1800')}
+                  max={Date.parse('01/01/2500')}
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
                   date={new Date(group?.createdAt || new Date().getTime())}
