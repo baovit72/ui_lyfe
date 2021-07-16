@@ -2,9 +2,10 @@ var validator = require('validator');
 import axios from 'axios';
 import {Alert} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import prompt from 'react-native-prompt-android';
 
-const REST_DOMAIN = 'http://10.0.2.2:2021/rest/';
-const GRAPH_DOMAIN = 'http://10.0.2.2:2021/graphql';
+const REST_DOMAIN = 'http://5c67b6a9bb0c.ngrok.io/rest/';
+const GRAPH_DOMAIN = 'http://5c67b6a9bb0c.ngrok.io/graphql';
 export default {
   isValidPassword: (password: string) => password.length >= 8,
   isValidUsername: (username: string) => username.length > 0,
@@ -132,8 +133,8 @@ export default {
         ],
       )
         .then(res => res.json())
-        .then(res => res.data)
-        .catch(e => console.log(e));
+        .then(data => resolve(data))
+        .catch(e => reject(e));
     }),
 
   showConfirmDialog: (cb, title, content, mainBtn) => {
@@ -149,7 +150,53 @@ export default {
       },
     ]);
   },
-  showInput: (title, cb) => {
-    Alert.prompt(title, undefined, cb);
+  showInput: (title, cb, def) => {
+    console.log(title);
+    prompt(
+      title,
+      '',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Submit',
+          onPress: cb,
+        },
+      ],
+      {
+        cancelable: false,
+        defaultValue: def,
+      },
+    );
+  },
+  updateUser: (token, {name, phone, birthday, avatar, password}) => {
+    let query = '';
+    password &&
+      password.length >= 8 &&
+      (query = `mutation{updateUser(user: {password: "${password}"}){phone}}`);
+    name &&
+      name.length &&
+      (query = `mutation{updateUser(user: {name: "${name}"}){name}}`);
+    phone &&
+      phone.length &&
+      (query = `mutation{updateUser(user: {phone: "${phone}"}){phone}}`);
+    birthday &&
+      birthday.length &&
+      (query = `mutation{updateUser(user: {birthday: "${birthday}"}){birthday}}`);
+    avatar &&
+      (query = `mutation{updateUser(user: {avatar: "${avatar}"}){avatar}}`);
+    return new Promise((resolve, reject) =>
+      axios
+        .post(
+          GRAPH_DOMAIN,
+          {query},
+          {headers: {Authorization: 'Bearer ' + token}},
+        )
+        .then(data => resolve(data.data))
+        .catch(e => reject(e)),
+    );
   },
 };

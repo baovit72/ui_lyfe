@@ -27,13 +27,13 @@ import {
   View,
 } from 'react-native';
 
-const {getImageCode} = require('../utils').default;
+const {getImageCode, updateUser} = require('../utils').default;
 
 import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
 import {useContext} from 'react';
 import GlobalContext from '../contexts/global.context';
-const {showConfirmDialog, leaveGroup, updateGroup, showInput} =
+const {showConfirmDialog, sendValidate, leaveGroup, updateGroup, showInput} =
   require('../utils').default;
 import ThemeContext from '../contexts/theme.context';
 import Toast from 'react-native-toast-message';
@@ -100,7 +100,21 @@ export default ({navigation}: IProp) => {
   const theme = useTheme();
   const {themeMode, setThemeMode} = useContext(ThemeContext);
   const {state, dispatch} = useContext(GlobalContext);
-
+  const updateUserWrapper = ({name, phone, password}, cb?) => {
+    dispatch({type: 'LOAD_BEGIN'});
+    updateUser(state.token, {name, phone, password})
+      .then(data => {
+        cb && cb();
+        reloadUser();
+      })
+      .catch(e =>
+        Toast.show({
+          type: 'error',
+          text1: 'Oops! Please check your network connection',
+          autoHide: true,
+        }),
+      );
+  };
   const updateAvatar = () => {
     ImagePicker.openPicker({
       width: 500,
@@ -108,12 +122,34 @@ export default ({navigation}: IProp) => {
       cropping: true,
     }).then(image => {
       console.log('image', image);
+      dispatch({type: 'LOAD_BEGIN'});
       getImageCode(state.token, image.path)
-        .then(data => console.log('image code', data.code))
-        .catch(error => console.log(error));
+        .then(data => {
+          console.log('data', data);
+          updateUser(state.token, {avatar: data.id})
+            .then(data => reloadUser())
+            .catch(e => reloadUser());
+        })
+        .catch(error => {
+          dispatch({type: 'LOAD_END'});
+          console.log('error', error);
+        });
     });
   };
-
+  const reloadUser = () => {
+    const token = state.token;
+    sendValidate(token)
+      .then(data => {
+        dispatch({
+          type: 'AUTHENTICATE',
+          payload: {token: token, user: data.user, group: data.group},
+        });
+        dispatch({type: 'LOAD_END'});
+      })
+      .catch(e => {
+        dispatch({type: 'LOAD_END'});
+      });
+  };
   const user = state.user;
   const group = state.group;
   console.log('group', group);
@@ -153,6 +189,7 @@ export default ({navigation}: IProp) => {
         dispatch({type: 'LOAD_END'});
       });
   };
+
   const onGroupDateChange = date => {
     console.log('change group date');
     dispatch({type: 'LOAD_BEGIN'});
@@ -288,16 +325,21 @@ export default ({navigation}: IProp) => {
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Name
                 </Text>
-                <TouchableOpacity
+
+                <Input
+                  value={user.name}
+                  disabled
                   style={{flex: 2}}
-                  onPress={() => {
-                    showInput('Enter new name', text => console.log(text));
-                  }}>
-                  <Input
-                    value={user.name}
-                    disabled
-                    accessoryRight={editIcon}></Input>
-                </TouchableOpacity>
+                  accessoryRight={props =>
+                    editIcon({
+                      ...props,
+                      onPress: () => {
+                        showInput('Enter new name', text =>
+                          updateUserWrapper({name: text}),
+                        );
+                      },
+                    })
+                  }></Input>
               </View>
               <View
                 style={{
@@ -331,10 +373,19 @@ export default ({navigation}: IProp) => {
                   Phone
                 </Text>
                 <Input
+                  accessoryRight={props =>
+                    editIcon({
+                      ...props,
+                      onPress: () => {
+                        showInput('Enter new phone', text =>
+                          updateUserWrapper({phone: text}),
+                        );
+                      },
+                    })
+                  }
                   style={{flex: 2}}
                   value={user.phone}
-                  disabled
-                  accessoryRight={editIcon}></Input>
+                  disabled></Input>
               </View>
               <View
                 style={{
@@ -362,6 +413,16 @@ export default ({navigation}: IProp) => {
                   Password
                 </Text>
                 <Button
+                  onPress={() =>
+                    showInput('Enter new password', text =>
+                      updateUserWrapper({password: text}, () =>
+                        Toast.show({
+                          type: 'success',
+                          text1: 'Your password has been updated!',
+                        }),
+                      ),
+                    )
+                  }
                   size="small"
                   style={{flex: 2, marginLeft: 18}}
                   appearance="outline"
@@ -435,7 +496,7 @@ export default ({navigation}: IProp) => {
                 <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
-                  date={new Date(group?.createdAt || new Date())}
+                  date={Date.parse(group?.createdAt || new Date())}
                   onSelect={date => onGroupDateChange(date)}
                 />
               </View>

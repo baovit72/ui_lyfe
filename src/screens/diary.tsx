@@ -237,7 +237,8 @@ export default ({navigation}: IProp) => {
               }}>
               we've been through{' '}
               {Math.ceil(
-                (new Date() - Date.parse(state.group.createdAt)) /
+                (new Date() -
+                  Date.parse(state?.group?.createdAt || new Date())) /
                   1000 /
                   60 /
                   60 /

@@ -58,6 +58,9 @@ export default () => {
     group: null,
     theme: 'light',
     diaryDeck: false,
+    diary: [],
+    feelings: [],
+    chat: [],
   });
 
   useEffect(async () => {
