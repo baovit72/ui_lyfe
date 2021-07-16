@@ -72,7 +72,7 @@ export default () => {
 
   useEffect(async () => {
     const diaryDeck = await AsyncStorage.getItem('diaryDeck');
-    if (diaryDeck) {
+    if (diaryDeck === 'true') {
       dispatch({type: 'DIARY_DECK_TOGGLE'});
     }
   }, []);

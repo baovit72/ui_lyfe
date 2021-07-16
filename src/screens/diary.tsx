@@ -126,6 +126,16 @@ export default ({navigation}: IProp) => {
     emojiState.setValue(false);
   }
   const _renderItem = ({item}) => {
+    if (item.placeholder) {
+      return (
+        <View
+          style={{
+            width: '100%',
+            height: Dimensions.get('window').width * 0.8,
+          }}></View>
+      );
+    }
+    console.log('render item');
     return (
       <View
         style={{
@@ -194,7 +204,7 @@ export default ({navigation}: IProp) => {
             style={{
               margin: 0,
               width: '100%',
-              height: Dimensions.get('window').width * 0.4,
+              height: Dimensions.get('window').width * 0.45,
               resizeMode: 'cover',
             }}
             source={{
@@ -233,7 +243,9 @@ export default ({navigation}: IProp) => {
     );
   };
   Keyboard.addListener('keyboardDidShow', hideEmoji);
-
+  const snapProps = state.diaryDeck
+    ? {layoutCardOffset: '18', layout: 'stack'}
+    : {vertical: true};
   return (
     <View style={{flex: 1}}>
       <View
@@ -251,6 +263,7 @@ export default ({navigation}: IProp) => {
             alignItems: 'center',
             //   paddingBottom: 30,
             borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
             overflow: 'hidden',
           }}>
           <View
@@ -282,11 +295,11 @@ export default ({navigation}: IProp) => {
         <View
           style={{
             flex: 22,
-            paddingTop: 40,
             paddingLeft: 10,
             paddingRight: 10,
           }}>
           <Carousel
+            paddingTop={70}
             data={[
               {
                 url: 'https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/08/watermelon.jpg',
@@ -312,10 +325,11 @@ export default ({navigation}: IProp) => {
                 url: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
                 description: 'Anyone wants a puppy?',
               },
+              {
+                placeholder: true,
+              },
             ]}
-            vertical
-            // layoutCardOffset={`18`}
-            // layout="tinder"
+            {...snapProps}
             renderItem={_renderItem}
             sliderWidth={Dimensions.get('window').width * 0.8}
             itemWidth={Dimensions.get('window').width * 0.8}

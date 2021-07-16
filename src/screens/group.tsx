@@ -215,6 +215,7 @@ export default ({navigation}: IProp) => {
         </Text>
       </View>
       <Input
+        maxLength={5}
         autoCapitalize="characters"
         style={styles.inputField}
         placeholder="Code"

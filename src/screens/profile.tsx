@@ -498,8 +498,8 @@ export default ({navigation}: IProp) => {
                   Start on
                 </Text>
                 <Datepicker
-                  min={Date.parse('01/01/1800')}
-                  max={Date.parse('01/01/2500')}
+                  min={new Date('01/01/1800')}
+                  max={new Date('01/01/2500')}
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
                   date={new Date(group?.createdAt || new Date().getTime())}
@@ -551,7 +551,10 @@ export default ({navigation}: IProp) => {
                 <Toggle
                   checked={state.diaryDeck}
                   onChange={() => {
-                    AsyncStorage.setItem('diaryDeck', !state.diaryDeck);
+                    AsyncStorage.setItem(
+                      'diaryDeck',
+                      !state.diaryDeck === true ? 'true' : 'false',
+                    );
                     dispatch({type: 'DIARY_DECK_TOGGLE'});
                   }}></Toggle>
               </View>
