@@ -28,7 +28,7 @@ export default () => {
         const {user, token, group} = payload;
         AsyncStorage.setItem('token', token);
         console.log('authenticate', token);
-        return {...state, user, token, group};
+        return {...state, user, token, group, isAuthenticated: true};
       case 'JOIN_GROUP':
         return {...state, group: payload.group};
       case 'LOAD_BEGIN':
@@ -45,7 +45,13 @@ export default () => {
         return {...state, group: payload.group};
       case 'LOG_OUT':
         AsyncStorage.removeItem('token');
-        return {...state, user: null, token: null, group: null};
+        return {
+          ...state,
+          user: null,
+          token: null,
+          group: null,
+          isAuthenticated: false,
+        };
       default:
         return {...state};
     }
@@ -61,6 +67,7 @@ export default () => {
     diary: [],
     feelings: [],
     chat: [],
+    isAuthenticated: false,
   });
 
   useEffect(async () => {
@@ -109,7 +116,7 @@ export default () => {
               height: '100%',
               backgroundColor: theme['color-primary-400'],
             }}></View>
-        ) : !state.user ? (
+        ) : !state.isAuthenticated ? (
           <AuthenticationStackScreen />
         ) : (
           <HomeStackScreen />
