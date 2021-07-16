@@ -1,0 +1,233 @@
+[33mcommit 993ec86fd3756ce9b3ad71d625c2c7bc337fd26d[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Sat Jul 17 05:27:37 2021 +0700
+
+    fixed: outapp
+
+[33mcommit 460d75083b8f2a089c02c8d00bb3060b96399731[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 22:26:30 2021 +0700
+
+    updated client
+
+[33mcommit 095d060d4f00506d783867708883b862bb5dca56[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 11:30:49 2021 +0700
+
+    fixed: profile
+
+[33mcommit 033e046d8697c0b0b49242cfeb400e6b5e2ffff1[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 11:20:36 2021 +0700
+
+    added: profile
+
+[33mcommit 6bf95745abe23c99eeb6fb644de894b13140d652[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 10:02:36 2021 +0700
+
+    updated client
+
+[33mcommit f42c41198cde570db469d723ea4dacfe1252a702[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 09:39:21 2021 +0700
+
+    updated
+
+[33mcommit 6b348a164ce7e94a67576b71c05aa5e9731ff14c[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 09:11:15 2021 +0700
+
+    updated client
+
+[33mcommit 3ccf2d21b8ffdff4edec625d3d9ac43ed2b01cbc[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 08:46:00 2021 +0700
+
+    updated client
+
+[33mcommit e60031679aff93f147d25e9eddd035dc3e3e3b98[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 07:24:18 2021 +0700
+
+    fixed: profile
+
+[33mcommit 2cedc7c90d9f97e2f12b049d31b268881983c4ad[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 01:29:26 2021 +0700
+
+    updated client
+
+[33mcommit 0c4f55f0f0c64b40112ecbcabb5966f53a24eaa6[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jul 16 00:07:39 2021 +0700
+
+    fixed:image upload
+
+[33mcommit 7a8f5fb10820afd839ecf0413e24ed557c135b28[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jul 15 23:27:38 2021 +0700
+
+    updated client
+
+[33mcommit 32d42e86435cf3bc1afdd8444491a36d5b26d45d[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jul 15 09:40:44 2021 +0700
+
+    fixed: tab bar lags
+
+[33mcommit f4dff05db75ecfc4069d80ca4e3ca765360c81e1[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jul 15 09:13:22 2021 +0700
+
+    Updated client
+
+[33mcommit d0f728c94f1ebf05016bd93bab4933e1e9e6b5c7[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jul 15 08:41:48 2021 +0700
+
+    updated client
+
+[33mcommit 4e31c912449bd3f72a4ad77fcab0e409dde2aeaa[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jul 15 07:53:54 2021 +0700
+
+    updated client
+
+[33mcommit b8f210dc5a373399bfd3d3c5c22fb1a45a8345b8[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Tue Jul 13 06:19:58 2021 +0700
+
+    fixed: font style
+
+[33mcommit 758dec16fa74965febb206e8155de15061afe564[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Tue Jul 13 05:40:44 2021 +0700
+
+    added: diary
+
+[33mcommit 25d607caabfb2f41ea0682c60fcfc44b806645ed[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Tue Jul 13 04:09:38 2021 +0700
+
+    updated
+
+[33mcommit 8dc6283aa2afded7f9bbabe2053d823045aef821[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jul 12 23:40:42 2021 +0700
+
+    added: emothought modal
+
+[33mcommit ff57b03f7adec27198cf7c6e6c8c3de011355f13[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jul 12 18:38:05 2021 +0700
+
+    fixed: emoticon style
+
+[33mcommit 51312f32d0ac0ce934388e49ab3de4a5864e752b[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Sun Jul 4 20:22:55 2021 +0700
+
+    updated client
+
+[33mcommit 491ded2aa84e39e1a65fdf86ba21033b5954319f[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jun 25 00:57:27 2021 +0700
+
+    updated client
+
+[33mcommit 170b85238092b06d473ef37b8357bb57cc4bbaeb[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Fri Jun 25 00:32:44 2021 +0700
+
+    updated theme
+
+[33mcommit 4861b59b8f7fc5e3007f0882d059b7da705de5f0[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jun 24 18:38:57 2021 +0700
+
+    updated client
+
+[33mcommit 355e5774926f216616e1075baf78058dd23a3fd2[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jun 24 17:24:21 2021 +0700
+
+    added chat
+
+[33mcommit ae1ba79c115414623e35ea1a494e978bed700872[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jun 24 11:25:05 2021 +0700
+
+    updated clinet
+
+[33mcommit 7b510717b2fe14523090a5756cbe0f3b5d2de5e3[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Thu Jun 24 10:27:37 2021 +0700
+
+    updated client
+
+[33mcommit 9bfffeb17916ceec3a370e4b3c4368025eb4df11[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Wed Jun 23 23:54:56 2021 +0700
+
+    added share thoughts ui
+
+[33mcommit 2ed5fb5b128731cb18a1d7ff1b83d22893179bc7[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Wed Jun 23 23:14:29 2021 +0700
+
+    updated emojishare
+
+[33mcommit 6ee2136bf7ab78b8a0cea20ae9fefb0309d49d67[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Wed Jun 23 08:41:51 2021 +0700
+
+    updated emoji import
+
+[33mcommit 46128d2a133a20806a1c26c44a26b04813394d5d[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Tue Jun 22 15:04:01 2021 +0700
+
+    updated client
+
+[33mcommit d0defc6add3457775d5eb4dc85449d1eb8adbe19[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jun 21 23:34:24 2021 +0700
+
+    added signup ui
+
+[33mcommit 0edbc9b7ecb5516e3d374a69f68555980fdd6bac[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jun 21 21:20:28 2021 +0700
+
+    updated login ui
+
+[33mcommit 36571656b4ef0074e05814dfe5e2a0cb24dd2346[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jun 21 11:33:35 2021 +0700
+
+    done ui login
+
+[33mcommit 7720d7659c73ca6c34674dda2e5da3008d4eabef[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Mon Jun 21 08:40:29 2021 +0700
+
+    updated background
+
+[33mcommit 6c183fcb02cc20e56a478a84105c90b13dba95fa[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Sun Jun 20 21:24:23 2021 +0700
+
+    added auth stack
+
+[33mcommit e132adebc2344fe59796c39bc98945698941ca54[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Sun Jun 20 15:33:13 2021 +0700
+
+    added navigator
+
+[33mcommit fd821ece284afefa3a161b4cba3eca19fcfe8e06[m
+Author: Bao Ho Nguyen <baohn2@vng.com.vn>
+Date:   Sun Jun 20 15:26:31 2021 +0700
+
+    created codebase

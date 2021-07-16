@@ -96,7 +96,7 @@ export default ({navigation}: IProp) => {
           dispatch({type: 'LOAD_END'});
           Toast.show({
             type: 'success',
-            text1:
+            text2:
               "We've sent you an email, please follow the instructions to restore your password!",
             autoHide: false,
           });

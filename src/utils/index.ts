@@ -46,7 +46,7 @@ export default {
   sendRestore: email =>
     new Promise((resolve, reject) =>
       axios
-        .post(REST_DOMAIN + 'restore-pw', {email})
+        .post(REST_DOMAIN + 'restore', {email})
         .then(data => resolve(data.data))
         .catch(e => reject(e)),
     ),

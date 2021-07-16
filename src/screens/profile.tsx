@@ -397,6 +397,8 @@ export default ({navigation}: IProp) => {
                   Birthday
                 </Text>
                 <Datepicker
+                  min={new Date('01/01/1800')}
+                  max={new Date('01/01/2500')}
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
                   date={new Date(user.birthday || new Date().getTime())}

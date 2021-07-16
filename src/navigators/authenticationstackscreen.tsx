@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from '../screens/login';
 import SignupScreen from '../screens/register';
 
-import ForgotStackScreen from './forgotstackscreen';
+import ForgotCode from '../screens/forgot-code';
 
 const AuthenticationStack = createStackNavigator();
 
@@ -29,6 +29,6 @@ export default () => (
         animationEnabled: true,
       }}
       name="Forgot"
-      component={ForgotStackScreen}></AuthenticationStack.Screen>
+      component={ForgotCode}></AuthenticationStack.Screen>
   </AuthenticationStack.Navigator>
 );
