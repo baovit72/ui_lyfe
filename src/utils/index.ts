@@ -102,7 +102,8 @@ export default {
         .catch(e => reject(e)),
     );
   },
-  getImageBase64: (token, uri) =>
+
+  getImageCode: (token, uri) =>
     new Promise((resolve, reject) => {
       // const fs = RNFetchBlob.fs;
       // RNFetchBlob.fs

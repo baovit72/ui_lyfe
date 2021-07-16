@@ -27,7 +27,7 @@ import {
   View,
 } from 'react-native';
 
-const {getImageBase64} = require('../utils').default;
+const {getImageCode} = require('../utils').default;
 
 import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
@@ -108,8 +108,8 @@ export default ({navigation}: IProp) => {
       cropping: true,
     }).then(image => {
       console.log('image', image);
-      getImageBase64(state.token, image.path)
-        .then(data => console.log(data))
+      getImageCode(state.token, image.path)
+        .then(data => console.log('image code', data.code))
         .catch(error => console.log(error));
     });
   };
@@ -288,14 +288,16 @@ export default ({navigation}: IProp) => {
                 <Text style={{marginRight: 10, flex: 1, fontWeight: 'bold'}}>
                   Name
                 </Text>
-                <Input
+                <TouchableOpacity
+                  style={{flex: 2}}
                   onPress={() => {
                     showInput('Enter new name', text => console.log(text));
-                  }}
-                  style={{flex: 2}}
-                  value={user.name}
-                  disabled
-                  accessoryRight={editIcon}></Input>
+                  }}>
+                  <Input
+                    value={user.name}
+                    disabled
+                    accessoryRight={editIcon}></Input>
+                </TouchableOpacity>
               </View>
               <View
                 style={{
@@ -346,7 +348,7 @@ export default ({navigation}: IProp) => {
                 <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
-                  date={new Date(user.birthday || new Date().toString())}
+                  date={Date.parse(user.birthday || new Date().toISOString())}
                   onSelect={nextDate => setDate(nextDate)}
                 />
               </View>
