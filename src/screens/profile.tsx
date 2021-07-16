@@ -33,7 +33,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
 import {useContext} from 'react';
 import GlobalContext from '../contexts/global.context';
-const {showConfirmDialog, leaveGroup, updateGroup} =
+const {showConfirmDialog, leaveGroup, updateGroup, showInput} =
   require('../utils').default;
 import ThemeContext from '../contexts/theme.context';
 import Toast from 'react-native-toast-message';
@@ -289,6 +289,9 @@ export default ({navigation}: IProp) => {
                   Name
                 </Text>
                 <Input
+                  onPress={() => {
+                    showInput('Enter new name', text => console.log(text));
+                  }}
                   style={{flex: 2}}
                   value={user.name}
                   disabled

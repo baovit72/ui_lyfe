@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from '../screens/login';
 import SignupScreen from '../screens/register';
 import {
   BottomNavigation,
   BottomNavigationTab,
+  DateService,
   useTheme,
 } from '@ui-kitten/components';
 import ForgotStackScreen from './forgotstackscreen';
@@ -24,6 +25,7 @@ import ChatRoom from '../screens/chatroom';
 import Profile from '../screens/profile';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import GlobalContext from '../contexts/global.context';
 
 const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
 
@@ -58,7 +60,7 @@ const BottomTabBar = ({navigation, state}: IProp) => (
 );
 export default () => {
   const theme = useTheme();
-
+  const {state, dispatch} = useContext(GlobalContext);
   return (
     <HomeTabs.Navigator
       lazy={false}

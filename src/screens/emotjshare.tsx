@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   ApplicationProvider,
   Button,
@@ -24,6 +24,8 @@ import {
 
 import EMOJIS from '../../assets/emojis';
 import Carousel from 'react-native-snap-carousel';
+import Draggable from 'react-native-draggable';
+import GlobalContext from '../contexts/global.context';
 
 /**
  * Stylesheet for the component
@@ -60,6 +62,8 @@ interface IProp {
 }
 
 export default ({navigation}: IProp) => {
+  const {state, dispatch} = useContext(GlobalContext);
+
   const [thoughtModal, setThoughtModal] = useState(false);
   const theme = useTheme();
   const t_backgroundColor = theme['background-basic-color-1'];
@@ -81,6 +85,14 @@ export default ({navigation}: IProp) => {
           // borderColor: theme['color-primary-400'],
           // backgroundColor: theme['color-primary-200'],
         }}>
+        {/* {state.group && (
+          <Draggable
+            x={200}
+            y={300}
+            renderColor={theme['color-primary-400']}
+            renderText={'dksljlsjdlskjd'}
+          />
+        )} */}
         <View
           style={{
             flex: 1,
