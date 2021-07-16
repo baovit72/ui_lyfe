@@ -89,8 +89,8 @@ export default {
         .catch(e => reject(e)),
     );
   },
-  updateGroup: (token, date) =>{
-    const query = `mutation{updateGroup(group: {createdAt: "${date.toDateString()}"}){createdAt}}`;
+  updateGroup: (token, date) => {
+    const query = `mutation{updateGroup(group: {createdAt: "${date.toISOString()}"}){createdAt}}`;
     return new Promise((resolve, reject) =>
       axios
         .post(
@@ -101,7 +101,7 @@ export default {
         .then(data => resolve(data.data))
         .catch(e => reject(e)),
     );
-  }
+  },
   getImageBase64: (token, uri) =>
     new Promise((resolve, reject) => {
       // const fs = RNFetchBlob.fs;

@@ -41,6 +41,8 @@ export default () => {
         return {...state, diaryDeck: !state.diaryDeck};
       case 'LEAVE_GROUP':
         return {...state, group: null};
+      case 'UPDATE_GROUP':
+        return {...state, group: payload.group};
       case 'LOG_OUT':
         AsyncStorage.removeItem('token');
         return {...state, user: null, token: null, group: null};

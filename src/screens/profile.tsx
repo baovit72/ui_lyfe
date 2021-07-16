@@ -33,7 +33,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {Keyboard} from 'react-native';
 import {useContext} from 'react';
 import GlobalContext from '../contexts/global.context';
-const {showConfirmDialog, leaveGroup} = require('../utils').default;
+const {showConfirmDialog, leaveGroup, updateGroup} =
+  require('../utils').default;
 import ThemeContext from '../contexts/theme.context';
 import Toast from 'react-native-toast-message';
 
@@ -168,13 +169,8 @@ export default ({navigation}: IProp) => {
         } else {
           dispatch({
             type: 'UPDATE_GROUP',
-            payload: {group: {createdAt: date}},
+            payload: {group: {...group, createdAt: date}},
           });
-          Toast.show({
-            type: 'success',
-            text1: 'Your have left the group!',
-          });
-          navigation.push('Group');
         }
       })
       .catch(e => {
@@ -434,8 +430,8 @@ export default ({navigation}: IProp) => {
                 <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
-                  date={new Date(group.createdAt)}
-                  onSelect={onGroupDateChange}
+                  date={new Date(group?.createdAt || new Date())}
+                  onSelect={date => onGroupDateChange(date)}
                 />
               </View>
             </Card>
