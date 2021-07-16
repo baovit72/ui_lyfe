@@ -100,9 +100,9 @@ export default ({navigation}: IProp) => {
   const theme = useTheme();
   const {themeMode, setThemeMode} = useContext(ThemeContext);
   const {state, dispatch} = useContext(GlobalContext);
-  const updateUserWrapper = ({name, phone, password}, cb?) => {
+  const updateUserWrapper = ({name, phone, password, birthday}, cb?) => {
     dispatch({type: 'LOAD_BEGIN'});
-    updateUser(state.token, {name, phone, password})
+    updateUser(state.token, {name, phone, password, birthday})
       .then(data => {
         cb && cb();
         reloadUser();
@@ -399,8 +399,10 @@ export default ({navigation}: IProp) => {
                 <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
-                  date={Date.parse(user.birthday || new Date().toISOString())}
-                  onSelect={nextDate => setDate(nextDate)}
+                  date={new Date(user.birthday || new Date().getTime())}
+                  onSelect={date =>
+                    updateUserWrapper({birthday: date.toISOString()})
+                  }
                 />
               </View>
               <View
@@ -496,7 +498,7 @@ export default ({navigation}: IProp) => {
                 <Datepicker
                   accessoryRight={props => <Icon {...props} name="calendar" />}
                   style={{flex: 2}}
-                  date={Date.parse(group?.createdAt || new Date())}
+                  date={new Date(group?.createdAt || new Date().getTime())}
                   onSelect={date => onGroupDateChange(date)}
                 />
               </View>
