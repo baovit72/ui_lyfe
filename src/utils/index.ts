@@ -136,7 +136,38 @@ export default {
         .then(data => resolve(data))
         .catch(e => reject(e));
     }),
-
+  getVideoCode: (token, uri) =>
+    new Promise((resolve, reject) => {
+      // const fs = RNFetchBlob.fs;
+      // RNFetchBlob.fs
+      //   .readFile(uri, 'base64')
+      //   .then(data => {
+      //     console.log(data);
+      //     resolve(data);
+      //   })
+      //   .catch(e => reject(e));
+      console.log('fetch');
+      RNFetchBlob.fetch(
+        'POST',
+        REST_DOMAIN + 'video',
+        {
+          Authorization: 'Bearer ' + token,
+          Accept: 'application/json',
+          ContentType: 'multipart/form-data',
+        },
+        [
+          {
+            name: 'video',
+            filename: 'video.mp4',
+            type: 'video/mp4',
+            data: RNFetchBlob.wrap(uri),
+          },
+        ],
+      )
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(e => reject(e));
+    }),
   showConfirmDialog: (cb, title, content, mainBtn) => {
     return Alert.alert(title, content, [
       {
@@ -188,6 +219,30 @@ export default {
       (query = `mutation{updateUser(user: {birthday: "${birthday}"}){birthday}}`);
     avatar &&
       (query = `mutation{updateUser(user: {avatar: "${avatar}"}){avatar}}`);
+    return new Promise((resolve, reject) =>
+      axios
+        .post(
+          GRAPH_DOMAIN,
+          {query},
+          {headers: {Authorization: 'Bearer ' + token}},
+        )
+        .then(data => resolve(data.data))
+        .catch(e => reject(e)),
+    );
+  },
+  sendChat: (token, {text, image, video}) => {
+    let query = '';
+    text &&
+      text.length &&
+      (query = `mutation{sendChat(chat:{text:\"${text}\"}){text,createdAt}}`);
+
+    image &&
+      image &&
+      (query = `mutation{sendChat(chat:{image:\"${image}\"}){image,createdAt}}`);
+    video &&
+      video.length &&
+      (query = `mutation{sendChat(chat:{video:\"${video}\"}){video,createdAt}}`);
+    console.log('query', query);
     return new Promise((resolve, reject) =>
       axios
         .post(

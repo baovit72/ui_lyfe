@@ -27,6 +27,7 @@ import {
   InputToolbar,
   InputField,
 } from 'react-native-gifted-chat';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import EMOJIS from '../../assets/emojis';
 import EmojiBoard from 'react-native-emoji-board';
@@ -45,6 +46,7 @@ import {
 import {setContext} from '@apollo/client/link/context';
 import GlobalContext from '../contexts/global.context';
 import {copyFileSync} from 'fs';
+import utils from '../utils';
 
 /**
  * Stylesheet for the component
@@ -227,6 +229,41 @@ export default ({navigation}: IProp) => {
                   <Button
                     appearance="ghost"
                     size="medium"
+                    onPress={() => {
+                      launchImageLibrary(
+                        {mediaType: 'photo'},
+                        (response: any) => {
+                          console.log('Response = ', response);
+                          if (response.didCancel) {
+                            console.log('User cancelled image picker');
+                          } else if (response.error) {
+                            console.log('ImagePicker Error: ', response.error);
+                          } else if (response.customButton) {
+                            console.log(
+                              'User tapped custom button: ',
+                              response.customButton,
+                            );
+                          } else if (response.assets.length) {
+                            const image = response.assets[0];
+                            console.log('image', image);
+                            dispatch({type: 'LOAD_BEGIN'});
+                            utils
+                              .getImageCode(state.token, image.uri)
+                              .then(data => {
+                                console.log('data', data);
+                                utils
+                                  .sendChat(state.token, {image: data.id})
+                                  .then(data => dispatch({type: 'LOAD_END'}))
+                                  .catch(e => dispatch({type: 'LOAD_END'}));
+                              })
+                              .catch(error => {
+                                dispatch({type: 'LOAD_END'});
+                                console.log('error', error);
+                              });
+                          }
+                        },
+                      );
+                    }}
                     accessoryLeft={attachmentIcon}
                   />
                   <Button
@@ -240,6 +277,13 @@ export default ({navigation}: IProp) => {
                     accessoryLeft={emojiIcon}
                   />
                   <Button
+                    onPress={() => {
+                      utils
+                        .sendChat(state.token, {text: chatState.value})
+                        .then(data => console.log(data))
+                        .catch(e => console.log(e));
+                      chatState.setValue('');
+                    }}
                     appearance="ghost"
                     size="large"
                     accessoryLeft={sendIcon}
