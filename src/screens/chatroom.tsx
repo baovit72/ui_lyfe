@@ -121,7 +121,8 @@ export default ({navigation}: IProp) => {
             justifyContent: 'center',
             alignItems: 'center',
             //   paddingBottom: 30,
-            borderBottomLeftRadius: 30,
+            borderBottomLeftRadius: 50,
+            borderBottomRightRadius: 50,
             overflow: 'hidden',
           }}>
           <View
@@ -147,7 +148,6 @@ export default ({navigation}: IProp) => {
             style={{
               width: '100%',
               height: '100%',
-              borderTopRightRadius: 30,
               backgroundColor: '#fff',
             }}
             onPress={() => {
