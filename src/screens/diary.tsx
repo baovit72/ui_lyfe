@@ -31,7 +31,7 @@ import TimeAgo from 'javascript-time-ago';
 
 // English.
 import en from 'javascript-time-ago/locale/en';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, {getInputRangeFromIndexes} from 'react-native-snap-carousel';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Keyboard} from 'react-native';
 import GlobalContext from '../contexts/global.context';
@@ -127,6 +127,7 @@ export default ({navigation}: IProp) => {
   }
   const _renderItem = ({item}) => {
     if (item.placeholder) {
+      if (state.diaryDeck) return null;
       return (
         <View
           style={{
@@ -150,6 +151,7 @@ export default ({navigation}: IProp) => {
             width: 0,
             height: 2,
           },
+
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
           borderWidth: 1,
@@ -244,8 +246,61 @@ export default ({navigation}: IProp) => {
   };
   Keyboard.addListener('keyboardDidShow', hideEmoji);
   const snapProps = state.diaryDeck
-    ? {layoutCardOffset: '18', layout: 'stack'}
-    : {vertical: true};
+    ? {
+        layoutCardOffset: '15',
+        layout: 'tinder',
+        scrollIntepolator: (index, carouselProps) => {
+          const range = [3, 2, 1, 0, -1];
+          const inputRange = getInputRangeFromIndexes(
+            range,
+            index,
+            carouselProps,
+          );
+          const outputRange = range;
+
+          return {inputRange, outputRange};
+        },
+        slideInterpolatedStyle: (index, animatedValue, carouselProps) => {
+          const sizeRef = carouselProps.vertical
+            ? carouselProps.itemHeight
+            : carouselProps.itemWidth;
+          const translateProp = carouselProps.vertical
+            ? 'translateY'
+            : 'translateX';
+
+          return {
+            zIndex: carouselProps.data.length - index,
+            opacity: animatedValue.interpolate({
+              inputRange: [2, 3],
+              outputRange: [1, 0],
+            }),
+            transform: [
+              {
+                rotate: animatedValue.interpolate({
+                  inputRange: [-1, 0, 1, 2, 3],
+                  outputRange: ['-25deg', '0deg', '-3deg', '1.8deg', '0deg'],
+                  extrapolate: 'clamp',
+                }),
+              },
+              {
+                [translateProp]: animatedValue.interpolate({
+                  inputRange: [-1, 0, 1, 2, 3],
+                  outputRange: [
+                    -sizeRef * 0.5,
+                    0,
+                    -sizeRef, // centered
+                    -sizeRef * 2, // centered
+                    -sizeRef * 3, // centered
+                  ],
+                  extrapolate: 'clamp',
+                }),
+              },
+            ],
+          };
+        },
+        useScrollView: true,
+      }
+    : {vertical: true, padddingTop: 70};
   return (
     <View style={{flex: 1}}>
       <View
@@ -298,8 +353,15 @@ export default ({navigation}: IProp) => {
             paddingLeft: 10,
             paddingRight: 10,
           }}>
+          {state.diaryDeck && (
+            <Text
+              style={{
+                color: theme['color-primary-400'],
+                paddingTop: 30,
+                paddingBottom: 20,
+              }}></Text>
+          )}
           <Carousel
-            paddingTop={70}
             data={[
               {
                 url: 'https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/08/watermelon.jpg',
