@@ -8,6 +8,8 @@ import {AsyncStorage, View} from 'react-native';
 import {useTheme} from '@ui-kitten/components';
 const {sendValidate} = require('./utils').default;
 import Toast from 'react-native-toast-message';
+
+import {WebSocketLink} from '@apollo/client/link/ws';
 import ThemeContext from './contexts/theme.context';
 import {
   ApolloClient,
@@ -16,7 +18,9 @@ import {
   createHttpLink,
   gql,
   useQuery,
+  ApolloLink,
 } from '@apollo/client';
+import {getMainDefinition} from '@apollo/client/utilities';
 
 import {setContext} from '@apollo/client/link/context';
 
@@ -79,9 +83,15 @@ export default () => {
     chat: [],
     isAuthenticated: false,
   });
+
   const httpLink = createHttpLink({
     uri: 'http://10.0.2.2:2021/graphql',
   });
+  const wsLink = new WebSocketLink({
+    uri: 'ws://10.0.2.2:2021/subscriptions',
+    options: {reconnect: true},
+  });
+
   const authLink = setContext((_, {headers}) => {
     // get the authentication token from local storage if it exists
     const token = state.token;
@@ -93,8 +103,16 @@ export default () => {
       },
     };
   });
+  const link = ApolloLink.split(
+    ({query}) => {
+      const {kind, operation} = getMainDefinition(query);
+      return kind === 'OperationDefinition' && operation === 'subscription';
+    },
+    wsLink,
+    authLink.concat(httpLink),
+  );
   const client = new ApolloClient({
-    link: authLink.concat(httpLink),
+    link,
     cache: new InMemoryCache(),
   });
   useEffect(async () => {

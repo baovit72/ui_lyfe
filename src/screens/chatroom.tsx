@@ -38,11 +38,13 @@ import {
   ApolloProvider,
   createHttpLink,
   gql,
+  useSubscription,
   useQuery,
 } from '@apollo/client';
 
 import {setContext} from '@apollo/client/link/context';
 import GlobalContext from '../contexts/global.context';
+import {copyFileSync} from 'fs';
 
 /**
  * Stylesheet for the component
@@ -127,24 +129,44 @@ export default ({navigation}: IProp) => {
       }
     }
   `;
+  const POLL_MESSAGES = gql`
+    subscription {
+      chatSubscription {
+        text
+        image
+        video
+        user
+        createdAt
+        id
+      }
+    }
+  `;
 
-  const {data, refetch, loading, error} = useQuery(GET_MESSAGES);
-
+  const {data: queryMsg, refetch, loading} = useQuery(GET_MESSAGES);
+  const {data: pollMsg, error} = useSubscription(POLL_MESSAGES, {
+    variables: {token: 'Bearer ' + state.token},
+  });
   const [messages, setMessages] = useState([]);
+  const mapChat = chat => ({
+    _id: chat.id,
+    text: chat.text,
+    createdAt: new Date(chat.createdAt),
+    image: chat.image.length > 0 ? chat.image : null,
+    video: chat.video.length > 0 ? chat.video : null,
+    user: {...JSON.parse(chat.user), _id: JSON.parse(chat.user).id},
+  });
   useEffect(() => {
-    if (!data) return;
-    const chats = data.chat;
-    setMessages(
-      chats.map((chat: any) => ({
-        _id: chat.id,
-        text: chat.text,
-        createdAt: new Date(chat.createdAt),
-        image: chat.image.length > 0 ? chat.image : null,
-        video: chat.video.length > 0 ? chat.video : null,
-        user: {...JSON.parse(chat.user), _id: JSON.parse(chat.user).id},
-      })),
-    );
-  }, [data]);
+    console.log(pollMsg, error);
+    if (!pollMsg) return;
+    const chat = pollMsg.chatSubscription;
+    setMessages([...messages, mapChat(chat)]);
+  }, [pollMsg, error]);
+  useEffect(() => {
+    if (!queryMsg) return;
+    const chats = queryMsg.chat;
+    if (chats.length > messages.length)
+      setMessages(chats.map((chat: any) => mapChat(chat)));
+  }, [queryMsg]);
 
   Keyboard.addListener('keyboardDidShow', hideEmoji);
 
