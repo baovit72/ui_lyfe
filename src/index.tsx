@@ -9,6 +9,16 @@ import {useTheme} from '@ui-kitten/components';
 const {sendValidate} = require('./utils').default;
 import Toast from 'react-native-toast-message';
 import ThemeContext from './contexts/theme.context';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+  gql,
+  useQuery,
+} from '@apollo/client';
+
+import {setContext} from '@apollo/client/link/context';
 
 interface IAction {
   type: string;
@@ -69,7 +79,24 @@ export default () => {
     chat: [],
     isAuthenticated: false,
   });
-
+  const httpLink = createHttpLink({
+    uri: 'http://10.0.2.2:2021/graphql',
+  });
+  const authLink = setContext((_, {headers}) => {
+    // get the authentication token from local storage if it exists
+    const token = state.token;
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  });
   useEffect(async () => {
     const diaryDeck = await AsyncStorage.getItem('diaryDeck');
     if (diaryDeck === 'true') {
@@ -108,7 +135,7 @@ export default () => {
   }, []);
   return (
     <GlobalContext.Provider value={{state, dispatch}}>
-      <NavigationContainer>
+      <NavigationContainer onStateChange={() => {}}>
         {state.firstLoad ? (
           <View
             style={{
@@ -119,7 +146,9 @@ export default () => {
         ) : !state.isAuthenticated ? (
           <AuthenticationStackScreen />
         ) : (
-          <HomeStackScreen />
+          <ApolloProvider client={client}>
+            <HomeStackScreen />
+          </ApolloProvider>
         )}
         <Spinner visible={state.spinner}></Spinner>
         <Toast ref={ref => Toast.setRef(ref)} />
